@@ -1,4 +1,4 @@
-import { FlatList, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View, NativeModules } from 'react-native'
 import React, { useState } from 'react'
 import { COLORS, SIZES } from '../../../../constants/themes'
 import Line from '../../../HostViewNew/Reusables/Line'
@@ -101,15 +101,16 @@ const MenuPage = ({navigation}) => {
     ]
     const dispatch=useDispatch()
     const logout=()=>{
-        dispatch(setActor({
-            backendActor:backend,
-            userActor:User,
-            hotelActor:Hotel
-        }))
-        dispatch(setUser({}))
-        dispatch(setHotels([]))
-        dispatch(setPrinciple(''))
-        navigation.navigate('Launch')
+        // dispatch(setActor({
+        //     backendActor:backend,
+        //     userActor:User,
+        //     hotelActor:Hotel
+        // }))
+        // dispatch(setUser({}))
+        // dispatch(setHotels([]))
+        // dispatch(setPrinciple(''))
+        // navigation.navigate('Launch')
+        NativeModules.DevSettings.reload();
     }
 
   return (

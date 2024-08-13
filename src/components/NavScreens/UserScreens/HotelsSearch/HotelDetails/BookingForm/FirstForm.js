@@ -6,13 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {COLORS, SIZES} from '../../../../../../constants/themes';
 import Icon from 'react-native-vector-icons/Entypo';
 import {Calendar} from 'react-native-calendars';
 import {useSelector} from 'react-redux';
 import BookingFormComp from './BookingFormComp';
-import CheckAnim from './CheckAnim';
 import {Dialog, ALERT_TYPE} from 'react-native-alert-notification';
 
 const FirstForm = ({setBookingForm, item, setOpen}) => {
@@ -35,6 +34,14 @@ const FirstForm = ({setBookingForm, item, setOpen}) => {
     date: '',
     marked: false,
   });
+
+  const validateData = useCallback(()=>{
+    if(booking.checkInDate==='' || booking.checkOutDate==='' || booking.bookingDuration <= 0 || guests===0){
+      return false
+    } else {
+      return true
+    }
+  },[booking, guests, item])
 
   // console.log("item on 1st form : ", item.payPalId);
   const book = async (booking, notify) => {
@@ -87,7 +94,14 @@ const FirstForm = ({setBookingForm, item, setOpen}) => {
           }}>
           <Icon name="cross" size={20} color={COLORS.textLightGrey} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelected('')}>
+        <TouchableOpacity onPress={() => {
+          setSelected('')
+          setCheckInDate({
+            date: '',
+            marked: false,
+          })
+          setBooking({...booking, checkInDate: '', checkOutDate: ''})
+          }}>
           <Text
             style={{
               color: 'black',
@@ -131,7 +145,7 @@ const FirstForm = ({setBookingForm, item, setOpen}) => {
         <Text style={styles.boldSmallText}>No. of guests</Text>
         <View style={styles.textContHorz}>
           <TextInput
-            // value={guests}
+            value={guests}
             placeholder="1"
             placeholderTextColor={COLORS.black}
             onChangeText={value => setGuests(value)}
@@ -195,8 +209,18 @@ const FirstForm = ({setBookingForm, item, setOpen}) => {
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
-            console.log('booking : 123 : ', booking);
-            setPaymentScreen(true);
+            // console.log('booking : 123 : ', booking);
+            // setPaymentScreen(true);
+            if(validateData()) {
+              setPaymentScreen(true);
+            } else {
+              Dialog.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'WARNING',
+                textBody: 'Please fill all the fields correctly!',
+                button: 'OK',
+              })
+            }
           }}>
           <Text style={styles.btnText}>Pay and Confirm</Text>
         </TouchableOpacity>

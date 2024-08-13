@@ -15,10 +15,10 @@ import Int "mo:base/Int";
 
 shared ({caller = owner}) actor class Support() {
 
-    var ticketRecords = TrieMap.TrieMap<Text, SupportTypes.Ticket>(Text.equal, Text.hash);
-    var unresolvedTicketRecords = TrieMap.TrieMap<Text, SupportTypes.Ticket>(Text.equal, Text.hash);
-    var supportChatRecords = TrieMap.TrieMap<Principal, [SupportTypes.SupportMessage]>(Principal.equal, Principal.hash);
-    var adminList : [Text] = ["sfwko-hd7us-gen5t-ssuci-vfjwf-afepb-a7p4y-guh5l-s5n2e-zuxvt-dae", "knve6-harwj-qzs3t-cu7oj-wpluq-ewgzd-tbdez-46lp5-nww7c-ne6rv-dae"];
+    var ticketRecords = TrieMap.TrieMap<Text,SupportTypes.Ticket>(Text.equal, Text.hash);
+    var unresolvedTicketRecords = TrieMap.TrieMap<Text,SupportTypes.Ticket>(Text.equal, Text.hash);
+    var supportChatRecords = TrieMap.TrieMap<Principal,[SupportTypes.SupportMessage]>(Principal.equal,Principal.hash);
+    var adminList:[Text] = ["6ct7f-kcnfk-uccb5-vc7ot-gjlbg-64al3-hnz2a-efs53-rj4jo-mwau4-6ae","sfwko-hd7us-gen5t-ssuci-vfjwf-afepb-a7p4y-guh5l-s5n2e-zuxvt-dae", "6b76s-v6k5g-6gryk-qvrbe-fwa3f-lvwjp-ou5b2-bccdr-djpga-ug63j-tqe", "jktes-xovbb-q64a2-pikqp-4og2m-rfezc-6fwpc-ctiwc-ldev7-34xrm-dae"];
 
     stable var stableTicketRecords : [(Text, SupportTypes.Ticket)] = [];
     stable var stableUnresolvedTicketRecords : [(Text, SupportTypes.Ticket)] = [];
