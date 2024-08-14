@@ -80,7 +80,7 @@ const BottomSheetCommunity = ({selfMod, openNotiModal}) => {
         disability, sex, gender identity, sexual orientation or age - with
         respect, and without judgement or bias.
       </Text>
-      <Text style={styles.linkText}>Learn More.</Text>
+      {/* <Text style={styles.linkText}>Learn More.</Text> */}
 
       <TouchableOpacity style={styles.agreeBtn} onPress={agreeOnAgreement}>
         <Text style={styles.agreeText}>Accept and continue</Text>

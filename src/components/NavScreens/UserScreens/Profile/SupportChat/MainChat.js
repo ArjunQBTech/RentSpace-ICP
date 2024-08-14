@@ -27,13 +27,17 @@ const MainChat = ({setSupportChatPage}) => {
   const sendChatMessage = async () => {
     console.log(actors.supportActor);
 
+    if (!message) {
+      return;
+    }
+
     try {
       setLoading(true);
-      let resp = await actors?.supportActor?.sendMessage(message,[]);
+      let resp = await actors?.supportActor?.sendMessage(message, []);
       console.log(resp);
-        setLoading(false);
-        setMessage('');
-        getPreviousQueries();
+      setLoading(false);
+      setMessage('');
+      getPreviousQueries();
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +61,7 @@ const MainChat = ({setSupportChatPage}) => {
         userPrincipal,
       );
       console.log(supportRes.ok, typeof supportRes.ok);
-    //   supportRes.ok.reverse();
+      //   supportRes.ok.reverse();
       setQueries(supportRes.ok);
       setLoading(false);
     } catch (err) {

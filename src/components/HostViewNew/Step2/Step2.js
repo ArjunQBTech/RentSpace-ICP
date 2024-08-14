@@ -11,7 +11,7 @@ const Step2 = ({setHostModal,pos}) => {
   console.log(listing);
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>
+      {/* <SaveBtn setHostModal={setHostModal}/> */}
       <BottomBtn back={2} setHostModal={setHostModal} pos={pos} step={2} nextFunc={()=>{return true}}/>
       <View style={styles.imageCont}>
         <Image source={images.step2} style={styles.bigImg}/>

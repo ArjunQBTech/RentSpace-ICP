@@ -184,6 +184,10 @@ const Main = ({navigation}) => {
   };
 
   const filterQuery = async () => {
+
+    setQueryHotels([]);
+    setRateHawkHotel([]);
+
     let finalquery = `minPrice=${query.minPrice}&maxPrice=${query.maxPrice}&pageSize=${query.pageSize}&amenities=${query.amenities}&propertyType=${query.propertyType}&location=${query.location}&name=${query.name}&latitude=${query.latitude}&longitude=${query.longitude}`;
 
     console.log('filter query func', finalquery);
@@ -288,6 +292,8 @@ const Main = ({navigation}) => {
           navigation={navigation}
           queryHotels={queryHotels}
           rateHawkHotel={rateHawkHotel}
+          filterQuery={filterQuery}
+
         />
 
         {/* BottomSheets */}

@@ -14,19 +14,16 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Fontisto';
 import Icon3 from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
-import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
-
-
+import {ALERT_TYPE, Dialog} from 'react-native-alert-notification';
 
 const BottomNav = ({navigation}) => {
-
   const message = 'You need to login first, go to profile page!';
 
   const {principle} = useSelector(state => state.principleReducer);
 
   const {user} = useSelector(state => state.userReducer);
 
-  console.log("user",user?.userImage);
+  // console.log('user', user?.userImage);
 
   const [bottom, setBottom] = useState(0);
   useEffect(() => {
@@ -46,14 +43,14 @@ const BottomNav = ({navigation}) => {
           onPress={() => {
             // alert(message);
             Dialog.show({
-              type:ALERT_TYPE.WARNING,
-              title:'WARNING',
-              textBody:message,
-              button:'OK',
-            })
+              type: ALERT_TYPE.WARNING,
+              title: 'WARNING',
+              textBody: message,
+              button: 'OK',
+            });
           }}>
-          <Icon3 name="sliders" size={26} color={COLORS.black} /> 
-         {/* ------------------------------------------------------------------------------------------ */}
+          <Icon3 name="sliders" size={26} color={COLORS.black} />
+          {/* ------------------------------------------------------------------------------------------ */}
         </TouchableOpacity>
         {/* <TouchableOpacity style={styles.iconNav} onPress={()=>{alert(message)}}>
                     <Icon name="search1" size={25} color={COLORS.black}/>
@@ -70,11 +67,11 @@ const BottomNav = ({navigation}) => {
           onPress={() => {
             // alert(message);
             Dialog.show({
-              type:ALERT_TYPE.WARNING,
-              title:'WARNING',
-              textBody:message,
-              button:'OK',
-            })
+              type: ALERT_TYPE.WARNING,
+              title: 'WARNING',
+              textBody: message,
+              button: 'OK',
+            });
           }}>
           <Icon2 name="comment" size={20} color={COLORS.black} />
         </TouchableOpacity>
@@ -85,7 +82,7 @@ const BottomNav = ({navigation}) => {
           }}>
           <Icon name="user" size={25} color={COLORS.black} />
         </TouchableOpacity>
-      </View> 
+      </View>
     );
   } else {
     return (
@@ -95,7 +92,7 @@ const BottomNav = ({navigation}) => {
           onPress={() => {
             navigation.navigate('Launch');
           }}>
-          <Icon3 name="sliders" size={26} color={COLORS.black} /> 
+          <Icon3 name="sliders" size={26} color={COLORS.black} />
         </TouchableOpacity>
         {/* <TouchableOpacity style={styles.iconNav} onPress={()=>{navigation.navigate('mapSearch')}}>
                     <Icon name="search1" size={25} color={COLORS.black}/>
@@ -119,9 +116,12 @@ const BottomNav = ({navigation}) => {
           onPress={() => {
             navigation.navigate('profile');
           }}>
-          {/* <Icon name="user" size={25} color={COLORS.black} /> */}
           {/* user profile photo */}
-          <Image source={{uri: user?.userImage}} style={styles.profilePic} />
+          {user?.userImage ? (
+            <Image source={{uri: user?.userImage}} style={styles.profilePic} />
+          ) : (
+            <Icon name="user" size={25} color={COLORS.black} />
+          )}
         </TouchableOpacity>
       </View>
     );

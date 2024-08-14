@@ -24,7 +24,7 @@ import Icon2 from 'react-native-vector-icons/Ionicons';
 import RateHawk from './Ratehawk/RateHawk';
 import RateHawkCard from './HotelDetails/cards/RateHawkCard';
 
-const BookHotelPage = ({navigation, queryHotels, rateHawkHotel}) => {
+const BookHotelPage = ({navigation, queryHotels, rateHawkHotel, filterQuery}) => {
   const [hotelProfile, setHotelProfile] = useState(false);
 
   const firstRender = useRef(true);
@@ -155,6 +155,7 @@ const BookHotelPage = ({navigation, queryHotels, rateHawkHotel}) => {
   }
   const refresh = () => {
     // console.log(queryHotels);
+    filterQuery();
     getQueryHotelDetails();
     getReservations(setRefreshing);
   };
@@ -338,7 +339,7 @@ const styles = StyleSheet.create({
   empty: {
     width: '90%',
     height: 180,
-    fontSize: SIZES.largeMed,
+    fontSize: 17,
     color: COLORS.textLightGrey,
     fontWeight: '500',
     backgroundColor: COLORS.white,

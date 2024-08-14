@@ -76,6 +76,7 @@ const Comments = ({id, comments, getComments, loading, setLoading}) => {
 
   const createComment = async () => {
     try {
+      if (comment == '') return;
       setComment('');
       setLoading(true);
       Keyboard.dismiss();

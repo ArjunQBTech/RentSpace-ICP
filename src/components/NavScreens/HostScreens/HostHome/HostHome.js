@@ -23,8 +23,8 @@ import Step2Manager from '../../../HostViewNew/Step2Manager';
 import Step3Manager from '../../../HostViewNew/Step3Manager';
 import ReservationCard from '../Reservations/ReservationCard';
 import {Principal} from '@dfinity/principal';
-import axios, { all } from 'axios';
-import { nodeBackend } from '../../../../../DevelopmentConfig';
+import axios, {all} from 'axios';
+import {nodeBackend} from '../../../../../DevelopmentConfig';
 
 const HostHome = ({navigation}) => {
   const [idprocess, setIdprocess] = useState(0);
@@ -40,7 +40,11 @@ const HostHome = ({navigation}) => {
   const [arrCount, setArrCount] = useState(0);
   const [hostingCount, setHostingCount] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
-  const {principle}=useSelector(state=>state.principleReducer)
+  const {principle} = useSelector(state => state.principleReducer);
+
+  const hostImg = user.userImage;
+  // console.log('Gov ID : ', typeof user.userGovID);
+
   const reservationTypes = [
     {
       title: 'Checked out',
@@ -58,7 +62,7 @@ const HostHome = ({navigation}) => {
 
   const parseDMY = s => {
     let [d, m, y] = s.split(/\D/);
-    return new Date(y, m-1, d);
+    return new Date(y, m - 1, d);
   };
 
   const getFilteredArray = (type, arr) => {
@@ -69,51 +73,55 @@ const HostHome = ({navigation}) => {
   };
 
   const getStatus = bookingRes => {
-    let checkInDate = parseDMY(bookingRes?.checkInDate)
-    let checkOutDate = parseDMY(bookingRes?.checkOutDate)
+    let checkInDate = parseDMY(bookingRes?.checkInDate);
+    let checkOutDate = parseDMY(bookingRes?.checkOutDate);
     let currentDate = new Date();
-    console.log(checkInDate,checkOutDate,currentDate)
+    console.log(checkInDate, checkOutDate, currentDate);
     let status = null;
     if (currentDate < checkOutDate && currentDate >= checkInDate) {
       status = 'Currently hosting';
-      console.log(' cur')
+      console.log(' cur');
       setHostingCount(prev => prev + 1);
     } else if (currentDate < checkInDate) {
       status = 'Arriving soon';
-      console.log(' arr')
+      console.log(' arr');
       setArrCount(prev => prev + 1);
     } else {
-      console.log(' out')
+      console.log(' out');
       status = 'Checked out';
       setOutCount(prev => prev + 1);
     }
     return status;
   };
 
-  async function getReservations(){
-    try{
-      setRefreshing(true)
-      console.log("executing getreservations")
-      let hotelIds=await getAllHotelList()
-      if(hotelIds==[] || hotelIds==undefined){
-        setRefreshing(false)
-        console.log('receiving empty hotel id : ',hotelIds)
-        return
-      };
-      let allBookings=[]
+  async function getReservations() {
+    try {
+      setRefreshing(true);
+      console.log('executing getreservations');
+      let hotelIds = await getAllHotelList();
+      if (hotelIds == [] || hotelIds == undefined) {
+        setRefreshing(false);
+        console.log('receiving empty hotel id : ', hotelIds);
+        return;
+      }
+      let allBookings = [];
 
-      for(let i=0;i<hotelIds?.length;i++){
-        console.log(`hotel id ${i+1} : ${hotelIds[i]}`)
-        let bookingRes=await actors?.bookingActor?.getAllHotelBookings(hotelIds[i])
-        if(bookingRes?.err!=undefined){
-          console.log(`err for booking in hotel ${i+1} : ${bookingRes?.err}`)
-          continue
+      for (let i = 0; i < hotelIds?.length; i++) {
+        console.log(`hotel id ${i + 1} : ${hotelIds[i]}`);
+        let bookingRes = await actors?.bookingActor?.getAllHotelBookings(
+          hotelIds[i],
+        );
+        if (bookingRes?.err != undefined) {
+          console.log(`err for booking in hotel ${i + 1} : ${bookingRes?.err}`);
+          continue;
         }
         // allBookings=[...allBookings,...bookingRes?.ok]
-        for(let j=0;j<bookingRes?.ok?.length;j++){
-          let userRes=await actors?.userActor?.getUserByPrincipal(Principal.fromText(bookingRes?.ok[j]?.userId))
-          if(userRes?.err!=undefined){
-            continue
+        for (let j = 0; j < bookingRes?.ok?.length; j++) {
+          let userRes = await actors?.userActor?.getUserByPrincipal(
+            Principal.fromText(bookingRes?.ok[j]?.userId),
+          );
+          if (userRes?.err != undefined) {
+            continue;
           }
           allBookings.push({
             bookingData: bookingRes?.ok[j],
@@ -121,73 +129,87 @@ const HostHome = ({navigation}) => {
             customerId: bookingRes?.ok[j]?.userId,
             customerData: userRes?.ok,
             status: getStatus(bookingRes?.ok[j]),
-          })
+          });
         }
         // console.log(bookingRes?.ok)
       }
-      console.log(allBookings)
-      setRefreshing(false)
+      console.log(allBookings);
+      setRefreshing(false);
 
-      setReservationList([...allBookings])
-    }catch(err){
-      console.log(err)
-      setRefreshing(false)
-
+      setReservationList([...allBookings]);
+    } catch (err) {
+      console.log(err);
+      setRefreshing(false);
     }
   }
 
-
-  async function getAllHotelList(){
-    setArrCount(0)
-    setHostingCount(0)
-    setOutCount(0)
-    try{
-      console.log("fetching hotels for : ",principle)
-      let hotelRes=await axios.get(`${nodeBackend}/api/v1/property/all?userPrincipal=${principle}`)
+  async function getAllHotelList() {
+    setArrCount(0);
+    setHostingCount(0);
+    setOutCount(0);
+    try {
+      console.log('fetching hotels for : ', principle);
+      let hotelRes = await axios.get(
+        `${nodeBackend}/api/v1/property/all?userPrincipal=${principle}`,
+      );
       // console.log(hotelRes?.data?.properties)
-      if(hotelRes?.data?.properties==undefined){
-        console.log("getting undefined properties")
-        setRefreshing(false)
-        return
-      };
-      let hotelIds=[]
-      for(let i=0; i<hotelRes?.data?.properties?.length; i++){
-        hotelIds?.push(hotelRes?.data?.properties[i]?.propertyId)
+      if (hotelRes?.data?.properties == undefined) {
+        console.log('getting undefined properties');
+        setRefreshing(false);
+        return;
       }
-      console.log("hotels returned : ",hotelIds)
-      if(hotelIds.length==0){
-        setHostModal(1)
+      let hotelIds = [];
+      for (let i = 0; i < hotelRes?.data?.properties?.length; i++) {
+        hotelIds?.push(hotelRes?.data?.properties[i]?.propertyId);
       }
-      return hotelIds
-    }catch(err){
-      console.log(err)
-      setRefreshing(false)
-
+      console.log('hotels returned : ', hotelIds);
+      if (hotelIds.length == 0) {
+        setHostModal(1);
+      }
+      return hotelIds;
+    } catch (err) {
+      console.log(err);
+      setRefreshing(false);
     }
   }
-
-
 
   useEffect(() => {
     // getAllReservations();
     // console.log('fetching reservations!');
     // getAllHotelList()
-    getReservations()
+    getReservations();
   }, []);
 
   return (
     <View style={styles.view}>
       <View style={styles.headerCont}>
         <Text style={styles.title}>Welcome, {user.firstName}!</Text>
-        <View style={styles.imgCont} >
-        <Image
-          source={require('../../../../assets/images/newProfile.png')}
-          style={styles.profile}
-        />
+        <View style={styles.imgCont}>
+          {hostImg == null || hostImg == '' || hostImg == undefined ? (
+            <Image
+              source={require('../../../../assets/images/newProfile.png')}
+              style={styles.profile}
+            />
+          ) : (
+            <Image source={{uri: hostImg}} style={styles.profile} />
+          )}
         </View>
-        
       </View>
-      <IdentityCard setIdprocess={setIdprocess} />
+      {user.userGovID === '' ? (
+        <IdentityCard setIdprocess={setIdprocess} />
+      ) : (
+        // <Text style={styles.verificationText}>{
+        //   user.isVerified ? 'Your ID is verified' : 'Your ID is under verification'
+        // }</Text>
+        <View style={styles.card}>
+          <Text style={styles.verificationText}>
+            {user.isVerified
+              ? 'Your ID is verified'
+              : 'Your ID is under verification'}
+          </Text>
+        </View>
+      )}
+
       <Text style={styles.subHeading}>Your reservations</Text>
       <FlatList
         style={styles.reservationTitleList}
@@ -323,27 +345,48 @@ const HostHome = ({navigation}) => {
 export default HostHome;
 
 const styles = StyleSheet.create({
+  card: {
+    width: '85%',
+    backgroundColor: 'white',
+    elevation: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 5,
+    marginLeft: '5%',
+    borderRadius: 15,
+    paddingVertical: 15,
+    marginBottom: 10,
+  },
+
+  verificationText: {
+    marginLeft: '5%',
+    fontSize: SIZES.large,
+    color: COLORS.black,
+    fontWeight: '600',
+  },
+
   headerCont: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-between',  
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 
   imgCont: {
-    backgroundColor: COLORS.newBG, 
+    backgroundColor: COLORS.newBG,
     padding: 10,
-    borderRadius  : 50,
+    borderRadius: 50,
     marginLeft: 'auto',
     marginRight: 20,
-    
   },
 
   profile: {
     width: 80,
     height: 80,
     elevation: 50,
+    borderRadius: 50,
   },
 
   view: {

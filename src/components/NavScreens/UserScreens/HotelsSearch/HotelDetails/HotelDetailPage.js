@@ -132,9 +132,9 @@ const HotelDetailPage = ({item, setOpen, navigation}) => {
           <View style={styles.hotelTitleReviewCont}>
             <View style={styles.hotelTitleCont}>
               <Text style={styles.hotelTitle}>{item?.propertyName}</Text>
-              <TouchableOpacity style={styles.likeCont}>
+              {/* <TouchableOpacity style={styles.likeCont}>
                 <Icon2 name="hearto" size={20} color={COLORS.textLightGrey} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
 
             {/* ------ */}

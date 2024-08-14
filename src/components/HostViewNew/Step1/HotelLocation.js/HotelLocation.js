@@ -43,7 +43,7 @@ const HotelLocation = ({setHostModal,pos}) => {
   }
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/> 
+      {/* <SaveBtn setHostModal={setHostModal}/>  */}
       <Text style={styles.title}>Where’s your place located?</Text>
       <Text style={styles.text}>Our comprehensive verification system checks details such as name, address.</Text>
       
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         fontWeight:'500',
         marginBottom:8,
         marginLeft:'8%',
+        marginTop:20
     },
     text:{
         fontSize:SIZES.preMedium,

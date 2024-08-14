@@ -31,7 +31,7 @@ const ReviewListing = ({setHostModal,pos}) => {
     ]
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>  
+      {/* <SaveBtn setHostModal={setHostModal}/>   */}
       <Text style={styles.title}>Review your Space</Text>
       <Text style={styles.text}>Our comprehensive verification system checks details such as name, address.</Text>
       <View style={styles.imgCont}>
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
         fontSize:SIZES.xxLarge,
         fontWeight:'500',
         marginBottom:5,
-        marginLeft:'8%'
+        marginLeft:'8%',
+        marginTop:25
     },
     text:{
         fontSize:SIZES.preMedium,

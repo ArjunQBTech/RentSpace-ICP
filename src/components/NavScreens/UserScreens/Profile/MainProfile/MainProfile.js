@@ -37,6 +37,7 @@ import Privacy from '../Privacy/Privacy';
 import Terms from '../TermAndConditions/Terms';
 import Faq from '../Faq/Faq';
 import {Dialog, ALERT_TYPE} from 'react-native-alert-notification';
+import Loading from '../../Loading';
 
 const MainProfile = ({navigation}) => {
   const {user} = useSelector(state => state.userReducer);
@@ -456,6 +457,13 @@ const MainProfile = ({navigation}) => {
         animationType="slide"
         onRequestClose={() => setTermsPage(false)}>
         <Terms setTermsPage={setTermsPage} />
+      </Modal>
+
+      <Modal
+      visible={loading} 
+      transparent={true}      
+      >
+        <Loading/>
       </Modal>
     </View>
   );

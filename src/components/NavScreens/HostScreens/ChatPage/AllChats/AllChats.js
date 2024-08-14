@@ -165,14 +165,14 @@ const AllChats = ({navigation}) => {
                 <View style={styles.view}>
                     <View style={styles.header}>
                         <Text style={styles.title}>Your Chats</Text>
-                        <View style={styles.iconCont}>
+                        {/* <View style={styles.iconCont}>
                             <TouchableOpacity style={styles.icon} onPress={()=>console.log("newChat : ",newChat)}>
                                 <Icon name='collage' size={30} color={COLORS.black}/>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.icon}>
                                 <Icon2 name='plus' size={30} color={COLORS.black}/>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                     </View>
                     <FlatList style={styles.list} data={chatUsers} renderItem={(item)=>(
                         <ChatCard item={item.item} setOpenChat={setOpenChat} openChat={openChat} setChat={setChatItem}/>
@@ -193,14 +193,14 @@ const AllChats = ({navigation}) => {
             <View style={styles.view}>
                 <View style={styles.header}>
                     <Text style={styles.title}>Your Chats</Text>
-                    <View style={styles.iconCont}>
+                    {/* <View style={styles.iconCont}>
                         <TouchableOpacity style={styles.icon} onPress={()=>{console.log("newChat : ",newChat)}}>
                             <Icon name='collage' size={30} color={COLORS.textLightGrey}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.icon}>
                             <Icon2 name='plus' size={30} color={COLORS.textLightGrey}/>
                         </TouchableOpacity>
-                    </View> 
+                    </View>  */}
                 </View>
                 <View style={styles.nothingCont}>
                     <Text style={styles.nothingText}>

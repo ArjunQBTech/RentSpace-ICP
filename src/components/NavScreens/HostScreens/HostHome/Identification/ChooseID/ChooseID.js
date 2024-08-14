@@ -22,8 +22,8 @@ import {ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 import {storage} from '../../../../../../../firebaseConfig';
 import {downloadFile} from 'react-native-fs';
 import {ALERT_TYPE, Dialog} from 'react-native-alert-notification';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../../../../../redux/users/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {setUser} from '../../../../../../redux/users/actions';
 
 const ChooseID = ({setIdprocess, pos}) => {
   const IDoptions = [
@@ -50,16 +50,16 @@ const ChooseID = ({setIdprocess, pos}) => {
   const [country, setCountry] = useState('');
   const [IDOption, setIDOption] = useState(IDoptions[2].tag);
   const [IDTitle, setIDTitle] = useState(IDoptions[2].title);
-
   const [uploadedDoc, setUploadedDoc] = useState({
     idNumber: '',
     doc: '',
   });
+
   const [upload, setUpload] = useState(false);
   const [transferred, setTransferred] = useState(0);
-  const {user}=useSelector(state=>state.userReducer)
-  const {actors}=useSelector(state=>state.actorReducer)
-  const dispatch=useDispatch()
+  const {user} = useSelector(state => state.userReducer);
+  const {actors} = useSelector(state => state.actorReducer);
+  const dispatch = useDispatch();
 
   const selectImage = async () => {
     console.log('Select Image');
@@ -98,23 +98,32 @@ const ChooseID = ({setIdprocess, pos}) => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-          try{
+          try {
             console.log('File available at', downloadURL);
             setUploadedDoc({...uploadedDoc, doc: downloadURL});
-            console.log("doc uploaded updating user : ",{...user,govIDLink:downloadURL,userGovID:uploadedDoc.idNumber})
-            let userRes=await actors?.userActor?.updateUserDetails({...user,govIDLink:downloadURL,userGovID:uploadedDoc.idNumber})
-            if(userRes?.err!=undefined){
+            console.log('doc uploaded updating user : ', {
+              ...user,
+              govIDLink: downloadURL,
+              userGovID: uploadedDoc.idNumber,
+            });
+            let userRes = await actors?.userActor?.updateUserDetails({
+              ...user,
+              govIDLink: downloadURL,
+              userGovID: uploadedDoc.idNumber,
+            });
+            if (userRes?.err != undefined) {
               Dialog.show({
                 type: ALERT_TYPE.DANGER,
                 title: 'Error ',
-                textBody: 'Something went wrong while uploading, please try again',
+                textBody:
+                  'Something went wrong while uploading, please try again',
                 button: 'OK',
               });
               setUpload(false);
 
-              return
+              return;
             }
-            console.log(userRes?.ok)
+            console.log(userRes?.ok);
             setUpload(false);
             setIdprocess(0);
             Dialog.show({
@@ -124,23 +133,24 @@ const ChooseID = ({setIdprocess, pos}) => {
               button: 'OK',
             });
 
-            dispatch(setUser({
-              ...user,
-              govIDLink:downloadURL,
-              userGovID:uploadedDoc.idNumber
-            }))
-          }catch(err){
-            console.log(err)
+            dispatch(
+              setUser({
+                ...user,
+                govIDLink: downloadURL,
+                userGovID: uploadedDoc.idNumber,
+              }),
+            );
+          } catch (err) {
+            console.log(err);
             Dialog.show({
               type: ALERT_TYPE.DANGER,
               title: 'Error ',
-              textBody: 'Something went wrong while uploading, please try again',
+              textBody:
+                'Something went wrong while uploading, please try again',
               button: 'OK',
             });
             setUpload(false);
-
           }
-         
         });
       },
     );
@@ -150,7 +160,7 @@ const ChooseID = ({setIdprocess, pos}) => {
     const finalData = {
       idNumber: uploadedDoc.idNumber,
       doc: uploadedDoc.doc,
-      country: country.value,
+      country: country,
       IDOption: IDOption,
     };
 
@@ -186,7 +196,7 @@ const ChooseID = ({setIdprocess, pos}) => {
         style={{width: '100%', height: '100%'}}
         showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Choose an ID type to add</Text>
-        <Dropdown
+        {/* <Dropdown
           style={styles.dropdown}
           data={countries}
           selectedTextStyle={styles.dropText}
@@ -198,6 +208,14 @@ const ChooseID = ({setIdprocess, pos}) => {
           value={country}
           onChange={value => setCountry(value)}
           iconStyle={{height: 30, width: 30}}
+        /> */}
+
+        <TextInput
+          placeholder={'Country'}
+          placeholderTextColor={COLORS.textLightGrey}
+          style={[styles.uploadContainer, {marginTop: 25}]}
+          value={country}
+          onChangeText={text => setCountry(text)}
         />
 
         <OptionCard
@@ -227,7 +245,6 @@ const ChooseID = ({setIdprocess, pos}) => {
           placeholderTextColor={COLORS.textLightGrey}
           style={[styles.uploadContainer, {marginTop: 25}]}
           value={uploadedDoc.idNumber}
-          keyboardType="numeric"
           onChangeText={text =>
             setUploadedDoc({...uploadedDoc, idNumber: text})
           }

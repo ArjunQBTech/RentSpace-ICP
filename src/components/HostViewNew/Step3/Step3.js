@@ -8,7 +8,7 @@ import BottomBtn from '../Reusables/BottomBtn'
 const Step3 = ({setHostModal,pos}) => {
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>
+      {/* <SaveBtn setHostModal={setHostModal}/> */}
       <BottomBtn setHostModal={setHostModal} pos={pos} step={3} nextFunc={()=>{return true}}/>
       <View style={styles.imageCont}>
         <Image source={images.step3} style={styles.bigImg}/>
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start',
         width:'90%',
         marginLeft:'5%',
-        marginVertical:30
+        marginVertical:35,
+        marginBottom:20
     },
     smallImgCont:{
         display:'flex',

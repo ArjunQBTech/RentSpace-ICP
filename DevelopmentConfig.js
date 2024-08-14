@@ -1,5 +1,6 @@
 //Decides if canister ids used are of production or development
 const production = false;
+const production = false;
 
 export const host = production ? 'https://icp-api.io' : 'http://127.0.0.1:4943';
 

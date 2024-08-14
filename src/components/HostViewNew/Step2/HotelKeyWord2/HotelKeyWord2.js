@@ -11,7 +11,7 @@ const arr=[1,1,1,11,1,1,1,1,1,1,1,1]
 const HotelKeyWord2 = ({setHostModal,pos}) => {
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>
+      {/* <SaveBtn setHostModal={setHostModal}/> */}
       <Text style={styles.title}>Which of these best describes your place?</Text>
       
       <FlatList data={arr} renderItem={(item)=>{

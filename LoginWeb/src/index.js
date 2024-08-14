@@ -40,6 +40,9 @@ loginButton.onclick = async e => {
 
       maxTimeToLive: days * hours * nanoseconds * numDays,
       onSuccess: resolve,
+      onerror: e => {
+        alert(e);
+      }
     });
   });
 

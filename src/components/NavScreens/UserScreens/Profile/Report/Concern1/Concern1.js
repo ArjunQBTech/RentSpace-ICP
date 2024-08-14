@@ -13,8 +13,8 @@ const complaintTopics=[
         text:"Noise or party"
     },
     {
-        tag:"neighborhood",
-        text:"Neighborhood concerns"
+        tag:"neighbourhood",
+        text:"Neighbourhood concerns" 
     },
     {
         tag:"safety",

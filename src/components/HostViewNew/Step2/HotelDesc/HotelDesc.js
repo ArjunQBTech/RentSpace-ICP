@@ -49,7 +49,7 @@ const HotelDesc = ({setHostModal,pos}) => {
   }
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>
+      {/* <SaveBtn setHostModal={setHostModal}/> */}
       <Text style={styles.title}>Create your description</Text>
       <Text style={styles.text}>Our comprehensive verification system checks details such as name.</Text>
       <TextInput 
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
       fontSize:SIZES.prexxLarge,
       fontWeight:'500',
       marginBottom:10,
-      marginLeft:'8%'
+      marginLeft:'8%',
+      marginTop:20
   },
   text:{
       fontSize:SIZES.preMedium,

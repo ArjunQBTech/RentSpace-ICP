@@ -156,7 +156,7 @@ const Pricing = ({setHostModal, pos}) => {
 
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal} />
+      {/* <SaveBtn setHostModal={setHostModal} /> */}
       <ScrollView
         contentContainerStyle={{
           width: Dimensions.get('window').width,
@@ -278,6 +278,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginBottom: 5,
     marginLeft: '8%',
+    marginTop: 20,
   },
   text: {
     fontSize: SIZES.preMedium,

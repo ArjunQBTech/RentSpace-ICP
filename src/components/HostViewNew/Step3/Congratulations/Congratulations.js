@@ -26,7 +26,7 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState('');
   const {listing} = useSelector(state => state.listingReducer);
-  console.log("Listing at congra : ", listing)
+  console.log('Listing at congra : ', listing);
   const {actors} = useSelector(state => state.actorReducer);
   const {authData} = useSelector(state => state.authDataReducer);
   const {principle} = useSelector(state => state.principleReducer);
@@ -41,7 +41,7 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
 
   const [btnDisabled, setBtnDisabled] = useState(false);
 
-  console.log("Principal : ", principle)
+  console.log('Principal : ', principle);
 
   // upload function to upload image to firebase
   async function uploadImage(uri) {
@@ -65,14 +65,13 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
             // console.log('File available at', downloadURL);
-            setImageList(list=>[...list,downloadURL])
-            resolve(downloadURL)
+            setImageList(list => [...list, downloadURL]);
+            resolve(downloadURL);
           });
         },
       );
-    })
-    
-  };
+    });
+  }
 
   // upload function to upload image to firebase
   async function uploadVideo(uri) {
@@ -106,7 +105,7 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
   }
   const uploadAllFiles = async () => {
     try {
-      console.log("Start uploading files")
+      console.log('Start uploading files');
       ApiHotelCreate();
     } catch (error) {
       console.log(error);
@@ -169,8 +168,8 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
         propertyType: listing?.propertyType,
         phantomWalletID: listing?.phantomWalletID,
         paymentMethods: listing?.paymentMethods,
-        payPalId : listing?.payPalId,
-        payPalSecret : listing?.payPalSecret,
+        payPalId: listing?.payPalId,
+        payPalSecret: listing?.payPalSecret,
       };
 
       console.log('Data => ', data);
@@ -179,18 +178,18 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
         .post(`${baseUrl}/api/v1/property/register`, data, {
           headers: {
             principal: principle,
-            "x-private":authData.privateKey,
-            "x-public":authData.publicKey,
-            "x-delegation":authData.delegation,
+            'x-private': authData.privateKey,
+            'x-public': authData.publicKey,
+            'x-delegation': authData.delegation,
             // "Content-Type":"multipart/form-data"
           },
         })
         .then(res => {
           console.log(res);
-          setLoading(false)
-          setHostModal(false)
-          console.log("hotel creation api response videos : ",res.data)
-          getHotelDetails()
+          setLoading(false);
+          setHostModal(false);
+          console.log('hotel creation api response videos : ', res.data);
+          getHotelDetails();
         })
         .catch(err => {
           console.log('Err : ', err);
@@ -338,7 +337,10 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
 
   return (
     <View style={styles.view}>
-      <Image source={images.congrats} style={styles.img} />
+      <View style={styles.imgCont}>
+        <Image source={images.congrats} style={styles.img} />
+      </View>
+
       <Text style={styles.title}>Congratulations, {user?.firstName}</Text>
       <Text style={styles.text}>
         From one Host to another - welcome aboard. Thank you for sharing your
@@ -346,12 +348,14 @@ const Congratulations = ({setHostModal, pos, getHotelDetails}) => {
       </Text>
       <Text style={styles.subtitle}>Thank You...</Text>
       <View style={styles.btnView}>
-        <TouchableOpacity style={styles.btn} onPress={()=>{
-          if(!btnDisabled){
-            setBtnDisabled(true)
-            uploadAllFiles()
-          }
-        }}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            if (!btnDisabled) {
+              setBtnDisabled(true);
+              uploadAllFiles();
+            }
+          }}>
           <Text style={styles.btnText}>Let’s get started</Text>
         </TouchableOpacity>
       </View>
@@ -392,6 +396,14 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontWeight: '600',
     marginLeft: '7.5%',
+  },
+  imgCont:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    marginBottom:15,
+    width:'100%',
   },
   img: {
     marginTop: 60,

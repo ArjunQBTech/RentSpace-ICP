@@ -11,7 +11,7 @@ const Step1 = ({setHostModal,pos}) => {
     const dispatch=useDispatch()
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>
+      {/* <SaveBtn setHostModal={setHostModal}/> */}
       <BottomBtn setHostModal={setHostModal} pos={pos} step={1} nextFunc={()=>{
         dispatch(setListing({}))
         return true
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start',
         width:'90%',
         marginLeft:'5%',
-        marginVertical:30
+        marginVertical:35
     },
     smallImgCont:{
         display:'flex',

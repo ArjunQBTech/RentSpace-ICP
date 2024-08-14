@@ -34,6 +34,7 @@ const Chat = ({item,setOpenChat}) => {
   // }
 
   const sendMessage = () => {
+    if (message == '') return;
     if (socket && item?.id) {
         const newMessage = {
             fromPrincipal: principle,

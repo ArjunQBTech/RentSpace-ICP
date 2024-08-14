@@ -15,9 +15,9 @@ const About = ({setIdprocess,pos}) => {
         You'll need to add an official government ID.
             Depending on what country you're from, you can add a driver's license, passport, or national identity card. This helps us make sure you're really you and is required to publish your listing(s).
         </Text>
-        <Text style={styles.link}>
+        {/* <Text style={styles.link}>
         How identity verification works
-        </Text>
+        </Text> */}
       </View>
       <Image source={images.IDAbout} style={styles.img}/>
       <BottomBotton title={"Add an ID"} onClick={()=>{setIdprocess(pos+1)}}/>

@@ -17,7 +17,7 @@ const ReorderPhotos = ({setHostModal,pos}) => {
 
   return (
     <View style={styles.view}>
-      <SaveBtn setHostModal={setHostModal}/>
+      {/* <SaveBtn setHostModal={setHostModal}/> */}
       <View style={styles.headerCont}>
             <View style={styles.textCont}>
                 <Text style={styles.heading}>
@@ -27,10 +27,10 @@ const ReorderPhotos = ({setHostModal,pos}) => {
                     {/* Drag to reorder */}
                 </Text>
             </View>
-            <TouchableOpacity style={styles.Addbtn} onPress={()=>setHostModal(11)}>
+            {/* <TouchableOpacity style={styles.Addbtn} onPress={()=>setHostModal(11)}>
             <Icon name='plus' size={20} color={COLORS.black}/>
                 <Text style={styles.AddbtnText}>Add more</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
       <ScrollView contentContainerStyle={styles.subView}>
         <View style={styles.bigImgCont}>
@@ -63,11 +63,11 @@ const ReorderPhotos = ({setHostModal,pos}) => {
             }
         </View>
 
-        <View style={styles.iconCont}>
+        {/* <View style={styles.iconCont}>
             <TouchableOpacity style={styles.plusIcon}>
                 <Icon name='plus' size={30} color={COLORS.black} style={styles.icon}/>
             </TouchableOpacity>
-        </View>
+        </View> */}
         
         
 
@@ -100,7 +100,8 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         width:'82%',
         marginLeft:'7.5%',
-        alignItems:'flex-start'
+        alignItems:'flex-start',
+        marginTop:20
     },
     textCont:{
         display:'flex',
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         width:'82%',
         marginLeft:'7.5%',
         width:310,
-        backgroundColor:COLORS.white,
+        // backgroundColor:COLORS.white,
     },
     bigImg:{
         marginBottom:10,

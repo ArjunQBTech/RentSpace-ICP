@@ -294,6 +294,7 @@ const RootComponent: React.FC = () => {
           Linking.addEventListener('url', handleDeepLink);
           setTimeout(async () => {
             // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
+            // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
             // const url = `http://127.0.0.1:4943/?canisterId=bw4dl-smaaa-aaaaa-qaacq-cai&publicKey=${toHex( // for atharva local
             const url = `http://127.0.0.1:4943/?canisterId=cbopz-duaaa-aaaaa-qaaka-cai&publicKey=${toHex(res.getPublicKey().toDer(), 
             // const url = `http://127.0.0.1:4943/?canisterId=br5f7-7uaaa-aaaaa-qaaca-cai&publicKey=${toHex( // for rajnish local 

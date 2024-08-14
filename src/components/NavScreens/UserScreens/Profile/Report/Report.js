@@ -30,7 +30,7 @@ const Report = ({setReportPage}) => {
       </View>
       <Text style={styles.title2}>Report</Text>
       <Text style={styles.largeText}>How-to</Text>
-      <Text style={styles.title}>Neighborhood Support</Text>
+      <Text style={styles.title}>Neighbourhood Support</Text>
       <Text style={styles.normalText}>
         You can report a party, noise complaint or neighbourhood concern here
       </Text>
@@ -40,7 +40,7 @@ const Report = ({setReportPage}) => {
           contact RentSpace support 
         </Text>
         {" "}
-        - our Neighborhood Support Team is only available to help with concerns related to hone sharing in your community.
+        - our neighbourhood Support Team is only available to help with concerns related to hone sharing in your community.
       </Text>
       <View style={styles.card}>
         <Icon2 name='newspaper-outline' color={COLORS.black} size={20} style={{marginRight:10}}/>
@@ -49,7 +49,7 @@ const Report = ({setReportPage}) => {
         </Text>
       </View>
       {/* <Text style={styles.sectionHeading}>
-        Urgent neighborhood situations
+        Urgent neighbourhood situations
       </Text>
       <Text style={styles.normalText}>
        You can report a party, noise complaint or neighbourhood concern here
@@ -60,7 +60,7 @@ const Report = ({setReportPage}) => {
         </Text>
       </TouchableOpacity> */}
       <Text style={styles.sectionHeading}>
-        Urgent neighborhood situations
+        Urgent neighbourhood situations
       </Text>
       <Text style={styles.normalText}>
        You can report a party, noise complaint or neighbourhood concern here

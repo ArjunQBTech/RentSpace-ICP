@@ -20,6 +20,7 @@ import {Principal} from '@dfinity/principal';
 import axios from 'axios';
 import {nodeBackend} from '../../../../../DevelopmentConfig';
 import Geolocation from '@react-native-community/geolocation';
+import {ALERT_TYPE, Dialog} from 'react-native-alert-notification';
 
 const months = [
   'January',
@@ -37,7 +38,7 @@ const months = [
 ];
 
 const ReelCard = ({item, reelIndex}) => {
-  console.log("Is liked: ", item?.likedBy.includes(principle));
+  console.log('Is liked: ', item?.likedBy.includes(principle));
   const [likeDisabled, setLikeDisabled] = useState(false);
   const {user} = useSelector(state => state.userReducer);
   const {principle} = useSelector(state => state.principleReducer);
@@ -50,7 +51,7 @@ const ReelCard = ({item, reelIndex}) => {
   // const baseURL = 'http://localhost:5000';
   const baseURL = nodeBackend;
 
-  // console.log("ReelCard Item: ", item.likedBy.length); 
+  // console.log("ReelCard Item: ", item.likedBy.length);
   const [reelLikes, setReelLikes] = useState();
   const [distance, setDistance] = useState(0);
   const [coord1, setCoord1] = useState({
@@ -89,7 +90,7 @@ const ReelCard = ({item, reelIndex}) => {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const distance = R * c;
-    console.log("Distance: ", parseFloat(distance.toFixed(1)));
+    console.log('Distance: ', parseFloat(distance.toFixed(1)));
     return parseFloat(distance.toFixed(1));
   }
 
@@ -107,6 +108,15 @@ const ReelCard = ({item, reelIndex}) => {
   };
 
   const openComments = () => {
+    if(user?.firstName == undefined){
+      Dialog.show({
+        type: ALERT_TYPE.WARNING,
+        title: 'Warning',
+        textBody: 'Please login to comment on this property',
+        button: 'OK',
+      });
+      return;
+    };
     btmSheetComments.current.present();
   };
   const sortCreatedAt = arr => {
@@ -212,8 +222,8 @@ const ReelCard = ({item, reelIndex}) => {
           }
         }
       }
-            setReelComments([...comments]);
-            setLoading(false);
+      setReelComments([...comments]);
+      setLoading(false);
 
       // newRes.map(async r => {
       //   setLoading(true)
@@ -346,13 +356,22 @@ const ReelCard = ({item, reelIndex}) => {
 
   // this --------------------------------------
   const updateLike = async () => {
+    if (likeDisabled || user?.firstName == undefined) {
+      Dialog.show({
+        type: ALERT_TYPE.WARNING,
+        title: 'Warning',
+        textBody: 'Please login to like this property',
+        button: 'OK',
+      });
+      return;
+    }
     setLiked(!liked);
     setLikeDisabled(true);
     // propertyId, userPrincipal
     await axios
       .put(`${baseURL}/api/v1/property/updateLikes`, {
-        propertyId: item?.propertyId, 
-        userPrincipal : principle,
+        propertyId: item?.propertyId,
+        userPrincipal: principle,
       })
       .then(res => {
         console.log('updated like : ', res.data);
@@ -390,7 +409,7 @@ const ReelCard = ({item, reelIndex}) => {
       <View style={styles.iconCont}>
         <TouchableOpacity
           style={styles.icon}
-          disabled={likeDisabled || user?.firstName == undefined}
+          // disabled={likeDisabled || user?.firstName == undefined}
           onPress={updateLike}>
           {liked ? (
             <Icon name="heart" color={'red'} size={25} />
@@ -401,7 +420,7 @@ const ReelCard = ({item, reelIndex}) => {
             {reelLikes}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           disabled={user?.firstName == undefined}
           style={styles.icon}
           onPress={() => {
@@ -409,11 +428,12 @@ const ReelCard = ({item, reelIndex}) => {
             console.log('liked by ', item?.likedBy.includes(principle));
           }}>
           <Icon name="plus" color={COLORS.black} size={25} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.icon}
           onPress={openComments}
-          disabled={user?.firstName == undefined}>
+          // disabled={user?.firstName == undefined}
+          >
           <Icon2
             name="chatbubble-ellipses-outline"
             color={COLORS.black}
@@ -428,8 +448,12 @@ const ReelCard = ({item, reelIndex}) => {
       </View>
       <View style={styles.infoCont}>
         <Text style={styles.infoTitle}>{item?.propertyName}</Text>
-        <Text style={styles.infoText}>{distance} kilometers away</Text>
-        <Text style={styles.infoText}>{changeDateFormat(item?.availableFrom) + ' - ' + changeDateFormat(item?.availableTill)}</Text>
+        {/* <Text style={styles.infoText}>{distance} kilometers away</Text> */}
+        <Text style={styles.infoText}>
+          {changeDateFormat(item?.availableFrom) +
+            ' - ' +
+            changeDateFormat(item?.availableTill)}
+        </Text>
         {/* <Text style={styles.infoText}>
           <Text style={{fontWeight: 'bold'}}>${item?.price}</Text> night
         </Text> */}
@@ -443,7 +467,12 @@ const ReelCard = ({item, reelIndex}) => {
           setLoading={setLoading}
         />
       </BottomSheetModal>
-      <ActivityIndicator animating={true} style={styles.loader} size={40} />
+      <ActivityIndicator
+        animating={true}
+        color={COLORS.black}
+        style={styles.loader}
+        size={40}
+      />
     </View>
   );
 };
@@ -460,11 +489,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    height: '32%',
+    // justifyContent: 'space-between',
+    gap: 15,
+    height: '25%',
     width: 50,
     position: 'absolute',
-    bottom: '7%',
+    bottom: '10%',
     right: '3%',
     zIndex: 10,
   },

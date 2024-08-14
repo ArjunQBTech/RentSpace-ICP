@@ -94,7 +94,7 @@ const Room = ({setHostModal, pos}) => {
                   </View>
                   <View style={styles.lowerInfos}>
                     <Text style={styles.lowerInfoTitle}>Price</Text>
-                    <Text style={styles.price}>${room.roomPrice}/Night</Text>
+                    <Text style={styles.price}>€{room.roomPrice}/Night</Text>
                   </View>
                   <TouchableOpacity onPress={() => deleteRoom()}>
                     <Text style={styles.deleteBtn}>Delete Room</Text>
