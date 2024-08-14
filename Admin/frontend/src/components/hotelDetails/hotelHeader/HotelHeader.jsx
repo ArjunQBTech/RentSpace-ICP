@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { LuCheckCircle } from "react-icons/lu";
 import { useAuth } from '../../../utils/useAuthClient';
 import { stringToFormattedDate } from '../../../utils/utils';
+import { Link } from 'react-router-dom';
 
 const HotelHeader = ({ hotel }) => {
   const [showGovID, setShowGovID] = useState(false);
@@ -76,10 +77,10 @@ const HotelHeader = ({ hotel }) => {
         <div className="header-host-gov-id-cont">
           <p className="host-id-label">Id Proof</p>
           <div className="host-id-cont">
-            <p className="host-id" style={showGovID ? { color: "black" } : {}}>
-              {hotel?.userData?.userGovId}
-            </p>
-            <button className="host-id-view" onClick={toggleGovID}>
+            <a href={hotel?.userData?.govIDLink} target="_blank" className="host-id" style={showGovID ? { color: "black" } : {}}>
+              {hotel?.userData?.userGovID}
+            </a>
+            <button type="button" className="host-id-view" onClick={toggleGovID}>
               {showGovID ? "Hide" : "View"}
             </button>
           </div>
