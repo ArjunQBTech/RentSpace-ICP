@@ -293,11 +293,12 @@ const RootComponent: React.FC = () => {
         try {
           Linking.addEventListener('url', handleDeepLink);
           setTimeout(async () => {
-            const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
+            // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
             // const url = `http://127.0.0.1:4943/?canisterId=bw4dl-smaaa-aaaaa-qaacq-cai&publicKey=${toHex( // for atharva local
+            const url = `http://127.0.0.1:4943/?canisterId=cbopz-duaaa-aaaaa-qaaka-cai&publicKey=${toHex(res.getPublicKey().toDer(), 
             // const url = `http://127.0.0.1:4943/?canisterId=br5f7-7uaaa-aaaaa-qaaca-cai&publicKey=${toHex( // for rajnish local 
             //   res.getPublicKey().toDer(),
-            // )}`;
+            )}`;
             if (await InAppBrowser.isAvailable()) {
               const result = await InAppBrowser.open(url, {
                 // iOS Properties
@@ -340,13 +341,13 @@ const RootComponent: React.FC = () => {
             }
           }, 1000);
         } catch (error) {
-          console.log(error);
+          console.log("error in 344 : ",error);
           setLoader(false)
           // alert(error);
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log("Err in 350 : ",err);
         // alert(err);
         setLoader(false)
       });
@@ -479,29 +480,40 @@ const RootComponent: React.FC = () => {
             }
           });
       });
+      console.log("Creating actor")
       // alert('craeting actor')
       let actorUser = createUserActor(ids.userCan, {agent});
+      console.log("Actor User created", actorUser)
       let actorHotel = createHotelActor(ids.hotelCan, {agent});
+      console.log("Actor Hotel created", actorHotel)
       let actorBooking = createBookingActor(ids.bookingCan, {agent});
+      console.log("Actor Booking created", actorBooking)
       let actorICPToken = Actor.createActor(idlFactory, {
         agent,
         blsVerify: () => true,
         canisterId: ids.ICPtokenCan,
       });
+      console.log("Actor ICP created", actorICPToken)
       let actorCkBTCToken=Actor.createActor(idlFactory, {
         agent,
         blsVerify:()=>true,
         canisterId:ids.ckBTCtokenCan
       })
+      console.log("Actor cKBTC created", actorCkBTCToken)
       let actorCkETHToken=Actor.createActor(idlFactory, {
         agent,
         blsVerify:()=>true,
         canisterId:ids.ckETHtokenCan
       })
+      console.log("Actor cKETH created", actorCkETHToken)
       let actorReview = createReviewActor(ids.reviewCan, {agent});
+      console.log("Actor Review created", actorReview)
       let actorComment = createCommentActor(ids.commentCan, {agent});
+      console.log("Actor Comment created", actorComment)
       let actorSupport = createSupportActor(ids.supportCan, {agent});
+      console.log("Actor Support created", actorSupport)
       // console.log("actor review : ",actorReview)
+      console.log("Store :: ",store)
       store.dispatch(
         setActor({
           userActor: actorUser,
@@ -555,7 +567,7 @@ const RootComponent: React.FC = () => {
             }
           })
           .catch(err => {
-            console.error(err);
+            console.error("Err in 559 : ",err);
             // alert('got error while fetching user data');
           });
       }, 2000);
@@ -566,7 +578,7 @@ const RootComponent: React.FC = () => {
       //   alert(whoami);
       // getUserData()
     } catch (err) {
-      console.log(err);
+      console.log("Err in 571 : ", err)
       //alert(err)
       setLoader(false)
       Dialog.show({
