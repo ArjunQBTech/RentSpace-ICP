@@ -20,6 +20,19 @@ const numDays = BigInt(5); // number of days delegation is valid for
 var params = new URLSearchParams(url.search);
 
 const loginButton = document.getElementById('login');
+const redirectBtn = document.getElementById('open');
+
+const body = document.getElementsByTagName('body')[0];
+body.style.display = 'none';
+redirectBtn.style.display = 'none';
+
+
+
+window.addEventListener('load', function () {
+  body.style.display = 'block';
+})
+
+
 loginButton.onclick = async e => {
   e.preventDefault();
 
@@ -53,6 +66,7 @@ loginButton.onclick = async e => {
   const encodedDelegation = encodeURIComponent(delegationString);
 
   loginButton.style.display = 'none';
+  redirectBtn.style.display = 'block';
 
   console.log(encodedDelegation);
 
@@ -77,7 +91,7 @@ loginButton.onclick = async e => {
   return false;
 };
 
-const redirectBtn = document.getElementById('open');
+
 redirectBtn.onclick = () => {
   const identity = authClient.getIdentity();
 

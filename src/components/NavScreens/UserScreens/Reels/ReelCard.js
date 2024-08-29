@@ -189,7 +189,7 @@ const ReelCard = ({item, reelIndex}) => {
         const newComment = {
           commentId: newRes[i].commentId,
           comment: newRes[i].comment,
-          hotelId: newRes[i].propertyId, // hotelId
+          hotelId: newRes[i].hotelId, // hotelId propertyId
           userId: newRes[i].userId,
           parentCommentId: newRes[i].parentCommentId,
           createdAt: dateString,
@@ -206,20 +206,23 @@ const ReelCard = ({item, reelIndex}) => {
             if (comments[j].commentId == newComment.parentCommentId) {
               index = j;
             }
+            if (index !== -1) {
+              comments[index] = {
+                ...comments[index],
+                replies: [...comments[index].replies, newComment],
+              };
+              replyCount += 1;
+
+              console.log("Comment after adding replies : ", comments[index]);
+              // setReelComments([...comments]);
+              // setLoading(false);
+            } else {
+              comments.push(newComment);
+              // setReelComments([...comments]);
+              // setLoading(false);
+            }
           }
-          if (index != -1) {
-            comments[index] = {
-              ...comments[index],
-              replies: [...comments[index].replies, newComment],
-            };
-            replyCount += 1;
-            // setReelComments([...comments]);
-            // setLoading(false);
-          } else {
-            comments.push(newComment);
-            // setReelComments([...comments]);
-            // setLoading(false);
-          }
+          
         }
       }
       setReelComments([...comments]);
@@ -397,6 +400,10 @@ const ReelCard = ({item, reelIndex}) => {
     setLiked(item?.likedBy.includes(principle));
   }, [reelIndex]);
 
+  useEffect(() => {
+    console.log("Changes in ReelComments : ", reelComments);
+  }, [reelComments]);
+
   return (
     <View style={styles.reel}>
       <Video
@@ -414,9 +421,9 @@ const ReelCard = ({item, reelIndex}) => {
           {liked ? (
             <Icon name="heart" color={'red'} size={25} />
           ) : (
-            <Icon name="hearto" color={COLORS.black} size={25} />
+            <Icon name="hearto" color={COLORS.white} size={25} />
           )}
-          <Text style={{color: COLORS.black, fontSize: SIZES.small}}>
+          <Text style={{color: COLORS.white, fontSize: SIZES.small}}>
             {reelLikes}
           </Text>
         </TouchableOpacity>
@@ -427,7 +434,7 @@ const ReelCard = ({item, reelIndex}) => {
             getComments();
             console.log('liked by ', item?.likedBy.includes(principle));
           }}>
-          <Icon name="plus" color={COLORS.black} size={25} />
+          <Icon name="plus" color={COLORS.white} size={25} />
         </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.icon}
@@ -436,14 +443,14 @@ const ReelCard = ({item, reelIndex}) => {
           >
           <Icon2
             name="chatbubble-ellipses-outline"
-            color={COLORS.black}
+            color={COLORS.white}
             size={25}
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.bigIcon}
           disabled={user?.firstName == undefined}>
-          <Icon3 name="film" color={COLORS.white} size={22} />
+          <Icon3 name="film" color={COLORS.black} size={22} />
         </TouchableOpacity>
       </View>
       <View style={styles.infoCont}>
@@ -469,7 +476,7 @@ const ReelCard = ({item, reelIndex}) => {
       </BottomSheetModal>
       <ActivityIndicator
         animating={true}
-        color={COLORS.black}
+        color={COLORS.white}
         style={styles.loader}
         size={40}
       />
@@ -483,7 +490,7 @@ const styles = StyleSheet.create({
   reel: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: COLORS.newBG,
+    backgroundColor: COLORS.mainGrey,
   },
   iconCont: {
     display: 'flex',
@@ -509,13 +516,13 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   infoTitle: {
-    color: COLORS.black,
+    color: COLORS.white,
     fontSize: SIZES.large - 1,
     fontWeight: '500',
     marginBottom: 10,
   },
   infoText: {
-    color: COLORS.black,
+    color: COLORS.white,
     fontSize: SIZES.preMedium,
     fontWeight: '300',
     marginBottom: 1,
@@ -538,7 +545,7 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 30,
-    backgroundColor: COLORS.black,
+    backgroundColor: COLORS.white,
     marginVertical: 15,
     zIndex: 5,
   },

@@ -292,7 +292,7 @@ const RootComponent: React.FC = () => {
         // console.log("ids : ",ids)
         try {
           Linking.addEventListener('url', handleDeepLink);
-          setTimeout(async () => {
+          // setTimeout(async () => {
             // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
             // const url = `http://127.0.0.1:4943/?canisterId=bw4dl-smaaa-aaaaa-qaacq-cai&publicKey=${toHex( // for atharva local
             const url = `http://127.0.0.1:4943/?canisterId=br5f7-7uaaa-aaaaa-qaaca-cai&publicKey=${toHex( // for rajnish local 
@@ -338,7 +338,7 @@ const RootComponent: React.FC = () => {
               Linking.openURL(url);
               // alert('opening external link');
             }
-          }, 1000);
+          // }, 1000);
         } catch (error) {
           console.log(error);
           setLoader(false)

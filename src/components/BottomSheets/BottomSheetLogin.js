@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View ,Image, ActivityIndicator} from 'react-native'
+import { Dimensions, StyleSheet, Text, View ,Image, ActivityIndicator, Modal} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {COLORS, SIZES} from '../../constants/themes'
 import {images} from '../../constants'
@@ -10,7 +10,14 @@ import Icon from 'react-native-vector-icons/Feather';
 const BottomSheetLogin = ({handleLogin,delegationValidation,navigation}) => {
 
 
-  const [loader,setLoader]=useState(false)
+  const [loader,setLoader]=useState(false);
+  const [disabled,setDisabled]=useState(false);
+
+  const handleDisable=()=>{
+    setTimeout(() => {
+      setDisabled(false);
+    }, 5000);
+  }
 
   const getFromAsyncStore=async(key)=>{
     let data;
@@ -60,7 +67,10 @@ const getnew=async()=>{
     <View style={styles.bottomSheet}>
       <Text style={styles.heading}>LOGIN / SIGN UP</Text>
       <FlatList style={styles.btnList} data={loginMethods} renderItem={({item})=>(
-        <TouchableOpacity style={styles.loginBtn} onPress={()=>{
+        <TouchableOpacity style={styles.loginBtn} disabled={disabled}
+         onPress={()=>{
+          setDisabled(true)
+          handleDisable()
           handleLogin(setLoader)
           setLoader(true)
         }}>

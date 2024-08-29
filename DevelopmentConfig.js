@@ -14,12 +14,12 @@ export const payPalUrl = 'https://api-m.sandbox.paypal.com';
 export const ids = {
   userCan: production
     ? 'ttotv-cyaaa-aaaao-a3o2a-cai'
-    : 'by6od-j4aaa-aaaaa-qaadq-cai', // rajnish
+    : 'aax3a-h4aaa-aaaaa-qaahq-cai', // rajnish
   // :"avqkn-guaaa-aaaaa-qaaea-cai", // atharva
 
   hotelCan: production
     ? 'tilpq-yaaaa-aaaao-a3oyq-cai'
-    : 'be2us-64aaa-aaaaa-qaabq-cai', // rajnish
+    : 'a4tbr-q4aaa-aaaaa-qaafq-cai', // rajnish
   // :"br5f7-7uaaa-aaaaa-qaaca-cai", // atharva
 
   backendCan: production
@@ -27,11 +27,11 @@ export const ids = {
     : 'be2us-64aaa-aaaaa-qaabq-cai',
   reviewCan: production
     ? 'tbiem-oiaaa-aaaao-a3oza-cai'
-    : 'bw4dl-smaaa-aaaaa-qaacq-cai', // rajnish
+    : 'aovwi-4maaa-aaaaa-qaagq-cai', // rajnish
   // :"b77ix-eeaaa-aaaaa-qaada-cai", // atharva
   bookingCan: production
     ? 'rsxhm-gqaaa-aaaao-a3oxq-cai'
-    : 'bkyz2-fmaaa-aaaaa-qaaaq-cai', // rajnish
+    : 'asrmz-lmaaa-aaaaa-qaaeq-cai', // rajnish
   // :"bd3sg-teaaa-aaaaa-qaaba-cai", // atharva
   ICPtokenCan: production
     ? 'ryjl3-tyaaa-aaaaa-aaaba-cai'
@@ -44,11 +44,11 @@ export const ids = {
     : 'ss2fx-dyaaa-aaaar-qacoq-cai',
   commentCan: production
     ? 'tpkje-vyaaa-aaaao-a3oya-cai'
-    : 'bd3sg-teaaa-aaaaa-qaaba-cai', // rajnish
+    : 'a3shf-5eaaa-aaaaa-qaafa-cai', // rajnish
   // :"be2us-64aaa-aaaaa-qaabq-cai", // atharva
   supportCan: production
     ? 'tgjcy-dqaaa-aaaao-a3ozq-cai'
-    : 'b77ix-eeaaa-aaaaa-qaada-cai', // rajnish
+    : 'ahw5u-keaaa-aaaaa-qaaha-cai', // rajnish
   // :"by6od-j4aaa-aaaaa-qaadq-cai", // atharva
 };
 

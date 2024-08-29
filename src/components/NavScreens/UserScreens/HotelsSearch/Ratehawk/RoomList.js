@@ -173,7 +173,7 @@ const RoomList = ({
                     // onPress={() => testorderBookingForm()}
                     onPress={() => {
                       setTransferData({
-                        hotelName : "Testing Hotel",
+                        hotelName : "Testing Hotel Room",
                         hotelAddress: hotelAddress,
                         checkInDate: checkInDate,
                         checkOutDate: checkOutDate,

@@ -38,6 +38,7 @@ import Terms from '../TermAndConditions/Terms';
 import Faq from '../Faq/Faq';
 import {Dialog, ALERT_TYPE} from 'react-native-alert-notification';
 import Loading from '../../Loading';
+import { CommonActions } from '@react-navigation/native';
 
 const MainProfile = ({navigation}) => {
   const {user} = useSelector(state => state.userReducer);
@@ -54,16 +55,18 @@ const MainProfile = ({navigation}) => {
   const [termsPage, setTermsPage] = useState(false);
 
   const logout = () => {
-    // dispatch(setActor({
-    //     backendActor:backend,
-    //     userActor:User,
-    //     hotelActor:Hotel
-    // }))
-    // dispatch(setUser({}))
-    // dispatch(setHotels([]))
-    // dispatch(setPrinciple(''))
-    // navigation.navigate('Launch')
-    NativeModules.DevSettings.reload();
+    dispatch(setActor({
+        backendActor:backend,
+        userActor:User,
+        hotelActor:Hotel
+    }))
+    dispatch(setUser({}))
+    dispatch(setHotels([]))
+    dispatch(setPrinciple(''))
+    navigation.navigate('reels')
+
+    // NativeModules.DevSettings.reload();
+
   };
 
   const getHotelList = async () => {
@@ -110,7 +113,7 @@ const MainProfile = ({navigation}) => {
       dob: user?.dob,
       userEmail: user?.userEmail,
       userRole: 'Host',
-      userImage: user?.userImage != '' ? user?.userImage : 'img',
+      userImage: user?.userImage != '' ? user?.userImage : '',
       userGovID:
         user?.userGovID == '' || user?.userGovID == null ? '' : user?.userGovID,
       govIDLink:

@@ -15,7 +15,7 @@ import {useSelector} from 'react-redux';
 
 const CommentCard = ({item, setParent, comRef}) => {
   let newCommentItem = {...item, replies: []};
-  console.log('New Comment Card Item', newCommentItem);
+  console.log('New Comment Card Item', item);
 
   const reply = () => {
     console.log('Replying');

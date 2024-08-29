@@ -101,16 +101,16 @@ const MenuPage = ({navigation}) => {
     ]
     const dispatch=useDispatch()
     const logout=()=>{
-        // dispatch(setActor({
-        //     backendActor:backend,
-        //     userActor:User,
-        //     hotelActor:Hotel
-        // }))
-        // dispatch(setUser({}))
-        // dispatch(setHotels([]))
-        // dispatch(setPrinciple(''))
-        // navigation.navigate('Launch')
-        NativeModules.DevSettings.reload();
+        dispatch(setActor({
+            backendActor:backend,
+            userActor:User,
+            hotelActor:Hotel
+        }))
+        dispatch(setUser({}))
+        dispatch(setHotels([]))
+        dispatch(setPrinciple(''))
+        navigation.navigate('reels')
+        // NativeModules.DevSettings.reload();
     }
 
   return (
