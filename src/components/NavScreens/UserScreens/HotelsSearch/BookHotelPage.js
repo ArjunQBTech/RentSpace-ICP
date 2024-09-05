@@ -189,7 +189,7 @@ const BookHotelPage = ({navigation, queryHotels, rateHawkHotel, filterQuery}) =>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={()=>setShowReservations(true)}>
             <Icon name="address-book" size={20} color={COLORS.black} />
-            <Text style={styles.btnText}>Show my bookings</Text>
+            <Text style={styles.btnText}>Show My Bookings</Text>
           </TouchableOpacity>
         </View>
 

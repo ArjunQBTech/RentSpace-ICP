@@ -9,7 +9,7 @@ import { images } from '../../../constants'
 const cards=[
     {
         title:"Tell us about your place",
-        text:"Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on Rentspace.",
+        text:"Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on RentSpace.",
         img:images.hostBed
     },
     {
@@ -19,7 +19,7 @@ const cards=[
     },
     {
         title:"Publish",
-        text:"Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on Rentspace.",
+        text:"Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on RentSpace.",
         img:images.hostDoor
     }
 ]
@@ -29,7 +29,7 @@ const HostGettingStarted = ({setHostModal}) => {
     <View style={styles.view}>
       <View style={styles.subView}>
         <BackBtn setHostModal={setHostModal}/>
-        <Text style={styles.title}>It’s easy to get started on Rentspace</Text>
+        <Text style={styles.title}>It’s easy to get started on RentSpace</Text>
         <InfoCard item={cards[0]}/>
         <Line/>
         <InfoCard item={cards[1]}/>

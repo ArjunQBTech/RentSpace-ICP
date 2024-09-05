@@ -42,7 +42,7 @@ const Privacy = ({setPrivacyPage}) => {
       points: [
         'With your consent',
         'To comply with legal obligations or lawful requests',
-        ' To protect the rights, property, or safety of Rentspace, our users, or others.',
+        ' To protect the rights, property, or safety of RentSpace, our users, or others.',
         'In connection with a merger, acquisition, or sale of assets',
       ],
     },
@@ -96,7 +96,7 @@ const Privacy = ({setPrivacyPage}) => {
         <View>
           <Text style={styles.mainHeading}>Privacy Policy</Text>
           <Text style={styles.mainText}>
-            Welcome to Rentspace! This Privacy Policy describes how Rentspace
+            Welcome to RentSpace! This Privacy Policy describes how RentSpace
             collects, uses, and discloses your personal information when you use
             our mobile application, website, and services. By accessing or using
             our App, you agree to the collection, use, and disclosure of your

@@ -69,13 +69,13 @@ const BottomSheetCommunity = ({selfMod, openNotiModal}) => {
       </View>
       <Text style={styles.heading}>Our community commitment</Text>
       <Text style={styles.tagLine}>
-        Rent Space is a community where anyone can belong.
+        RentSpace is a community where anyone can belong.
       </Text>
       <Text style={styles.simpleText}>
         To ensure this, we're asking you to commit to the following:
       </Text>
       <Text style={styles.simpleText}>
-        I agree to treat everyone in the Rent space community -regardless of
+        I agree to treat everyone in the RentSpace community, regardless of
         their race, religion, national origin, ethnicity, skin colour,
         disability, sex, gender identity, sexual orientation or age - with
         respect, and without judgement or bias.

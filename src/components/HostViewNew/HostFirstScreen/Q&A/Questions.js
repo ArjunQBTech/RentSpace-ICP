@@ -5,7 +5,7 @@ import Question from './Question'
 
 const questions=[
   {
-    question:"Is my place right for Rentspace?",
+    question:"Is my place right for RentSpace?",
     answer:"Its upto you to decide"
   },
   {
@@ -17,11 +17,11 @@ const questions=[
     answer:"Its upto you to decide"
   },
   {
-    question:"Any tips on being a great Rentspace Host?",
+    question:"Any tips on being a great RentSpace Host?",
     answer:"Its upto you to decide"
   },
   {
-    question:"What are Rentspace's fees?",
+    question:"What are RentSpace's fees?",
     answer:"Its upto you to decide"
   },
 ]

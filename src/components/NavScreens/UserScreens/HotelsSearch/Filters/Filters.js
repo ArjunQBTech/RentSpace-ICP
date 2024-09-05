@@ -82,20 +82,20 @@ const Filters = ({setShowFilters, query, setQuery}) => {
       <ScrollView style={styles.scrollPart}>
         {/* <TypeOfPlace />
         <Line /> */}
-        <PriceRange maxPrice={maxPrice} setMaxPrice={setMaxPrice} />
-        <Line />
+        {/* <PriceRange maxPrice={maxPrice} setMaxPrice={setMaxPrice} /> */}
+        {/* <Line /> */}
         <PropertyTypes
           list={propertyTypesList}
           propertyType={propertyType}
           setPropertyType={setPropertyType}
         />
-        <Line />
+        {/* <Line /> */}
         <Amenities
           amenitiesList={amenitiesList}
           amenities={amenities}
           setAmenities={setAmenities}
         />
-        <Line />
+        {/* <Line /> */}
       </ScrollView>
       <View style={styles.footer}>
         <View style={styles.placeHolder} />
@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    elevation: 50
   },
   header: {
     display: 'flex',
@@ -151,7 +152,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     justifyContent: 'center',
-    marginVertical: 12,
+    marginTop: 15,
+    marginBottom:10
   },
   cross: {
     position: 'absolute',

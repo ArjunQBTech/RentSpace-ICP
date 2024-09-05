@@ -33,7 +33,7 @@ const SecurityCheck = ({setHostModal,pos}) => {
         <Text style={styles.textNormal}>
             Be sure to comply with your {" "}
                 <Text style={styles.textLink}>local laws</Text>{" "}
-            and review Rentspace's{" "}
+            and review RentSpace's{" "}
                 <Text style={styles.textLink}>nondiscrimination policy.</Text>{" "}
              and{" "}
                 <Text style={styles.textLink}>guest and Host fees.</Text>

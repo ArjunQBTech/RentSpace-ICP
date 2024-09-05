@@ -40,7 +40,9 @@ const BottomSheetNotification = ({self}) => {
         }}>
                 <Text style={styles.notifyText}>Yes, notify me</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.skipBtn}>
+        <TouchableOpacity style={styles.skipBtn} onPress={()=>{
+            self.current.dismiss()
+        }}>
                 <Text style={styles.skipText}>Skip</Text>
         </TouchableOpacity>
       </View>

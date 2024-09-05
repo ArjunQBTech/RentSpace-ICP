@@ -191,8 +191,8 @@ const BottomSheetFinishSignUp = ({openComm, closeModal}) => {
         <Icon name="chevron-right" size={20} color={COLORS.black} />
       </TouchableOpacity>
       <Text style={styles.simpleText}>
-        To sign up, you need to be at level 18. Your birthday won’t be shared
-        with other people who use Rent space.
+        To sign up, you need to be at level 18. Your date of birth won’t be shared
+        with other people who use RentSpace.
       </Text>
       <TextInput
         placeholder="Email"
@@ -207,7 +207,7 @@ const BottomSheetFinishSignUp = ({openComm, closeModal}) => {
         We’ll email you trip confirmations and receipts.
       </Text>
       <Text style={styles.simpleText}>
-        By selecting Agree and continue, I agree to Rent space's{' '}
+        By selecting Agree and continue, I agree to RentSpace's{' '}
         <Text style={styles.linkText}>
           Terms of Service, Payments Terms of Service and Nondiscrimination
           Policy

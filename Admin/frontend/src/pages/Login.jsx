@@ -13,7 +13,7 @@ const Login = ({setLoggedIn}) => {
     }
   return (
     <div className='cont'>
-        <h1 className='login-h1'>Rentspace Admin Login</h1>
+        <h1 className='login-h1'>RentSpace Admin Login</h1>
     <div className='main-login-app'>
 
         <img

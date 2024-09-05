@@ -7,7 +7,7 @@ import OptionCard from './OptionCard'
 
 const FirstReservation = ({setHostModal,pos}) => {
 
-    const [selected,setSelected]=useState('Any rentspace guest')
+    const [selected,setSelected]=useState('Any RentSpace guest')
   return (
     <View style={styles.view}>
       <SaveBtn setHostModal={setHostModal}/>
@@ -15,10 +15,10 @@ const FirstReservation = ({setHostModal,pos}) => {
       Choose who to welcome for your first reservation
       </Text>
       <Text style={styles.text}>
-      Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on Rentspace.
+      Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on RentSpace.
       </Text>
       <OptionCard 
-        title={"Any rentspace guest"}
+        title={"Any RentSpace guest"}
         text={"Our comprehensive verification system checks details such as name, address."}
         selected={selected}
         setSelected={setSelected}

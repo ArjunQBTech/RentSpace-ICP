@@ -19,32 +19,40 @@ const numDays = BigInt(5); // number of days delegation is valid for
 // Get the search parameters from the URL
 var params = new URLSearchParams(url.search);
 
+console.log('IOS termial testing');
+
 const loginButton = document.getElementById('login');
 const redirectBtn = document.getElementById('open');
 
-const body = document.getElementsByTagName('body')[0];
-body.style.display = 'none';
+// const body = document.getElementsByTagName('body')[0];
+// body.style.display = 'none';
 redirectBtn.style.display = 'none';
-
-
+loginButton.style.display = 'none';
 
 window.addEventListener('load', function () {
-  body.style.display = 'block';
-})
-
+  // body.style.display = 'block';
+  loginButton.style.display = 'block';
+});
 
 loginButton.onclick = async e => {
   e.preventDefault();
 
   //   var middleKeyIdentity = await ECDSAKeyIdentity.generate({extractable: true});
   let publicKey = params.get('publicKey');
+  console.log('Public Key', publicKey);
   let newIdentity = new ECDSAKeyIdentity(
     {publicKey: fromHex(publicKey)},
     fromHex(publicKey),
     null,
   );
+  console.log('New Identity', newIdentity);
   authClient = await AuthClient.create({identity: newIdentity});
-  await new Promise(resolve => {
+  console.log('Auth Client', authClient);
+
+  console.log('Network : ', process.env.DFX_NETWORK);
+
+
+  await new Promise((resolve, reject) => {
     authClient.login({
       identityProvider:
         process.env.DFX_NETWORK === 'ic'
@@ -52,14 +60,21 @@ loginButton.onclick = async e => {
           : `http://rdmx6-jaaaa-aaaaa-aaadq-cai.localhost:4943`,
 
       maxTimeToLive: days * hours * nanoseconds * numDays,
-      onSuccess: resolve,
-      onerror: e => {
-        alert(e);
-      }
+      onSuccess: () => {
+        console.log('Login Success');
+        resolve();
+      },
+      onError: e => {
+        console.error('Login Error:', e);
+        alert('Login failed.');
+        reject(e);
+      },
     });
   });
 
   const identity = authClient.getIdentity();
+
+  console.log('Identity', identity);
 
   var delegationString = JSON.stringify(identity.getDelegation().toJSON());
 
@@ -90,7 +105,6 @@ loginButton.onclick = async e => {
 
   return false;
 };
-
 
 redirectBtn.onclick = () => {
   const identity = authClient.getIdentity();

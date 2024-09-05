@@ -29,7 +29,7 @@ const ChatDrawer = ({navigation,showDrawer,setShowDrawer}) => {
           <Text style={[styles.contents,{color:color.color}]}>All messages</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.contentBtn} onPress={()=>setShowSupportChat(true)}>
-          <Text style={styles.contents}>Rentspace support</Text>
+          <Text style={styles.contents}>RentSpace support</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity style={styles.contentBtn}>
           <Text style={styles.contents}>Archive</Text>
