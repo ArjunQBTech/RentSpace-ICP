@@ -83,17 +83,30 @@ const AllChats = ({navigation}) => {
         console.log("getting all users!")
         let fromPrinciples=[]
         let toPrinciples=[]
-        chats.map((chat)=>{
-            fromPrinciples.push(chat.fromPrincipal)
-            console.log("from map : ",{id:chat.fromPrincipal,updateAt:chat.updatedAt})
+        // chats.map((chat)=>{
+        //     fromPrinciples.push(chat.fromPrincipal)
+        //     console.log("from map : ",{id:chat.fromPrincipal,updateAt:chat.updatedAt})
             
-        })
-        chats.map((chat)=>{
-            if(!(fromPrinciples.includes(chat.toPrincipal))){
-                console.log("to map : ",chat.toPrincipal)
-                toPrinciples.push(chat.toPrincipal)   
+        // })
+        for(let idx = 0; idx < chats.length; idx++) {
+            fromPrinciples.push(chats[idx].fromPrincipal);
+            console.log('From Loop : ', {
+              id : chats[idx].fromPrincipal,
+              updatedAt : chats[idx].updatedAt
+            })
+          };
+        // chats.map((chat)=>{
+        //     if(!(fromPrinciples.includes(chat.toPrincipal))){
+        //         console.log("to map : ",chat.toPrincipal)
+        //         toPrinciples.push(chat.toPrincipal)   
+        //     }
+        // })
+        for(let idx = 0; idx < chats.length; idx++) {
+            if(!fromPrinciples.includes(chats[idx].toPrincipal)) {
+              console.log("To Loop : ", chats[idx].toPrincipal);
+              toPrinciples.push(chats[idx].toPrincipal);
             }
-        })
+          };
         fromPrinciples=new Set(fromPrinciples)
         toPrinciples=new Set(toPrinciples)
         fromPrinciples=Array.from(fromPrinciples)
@@ -105,46 +118,63 @@ const AllChats = ({navigation}) => {
         if(fromPrinciples.length==0){
             setLoading(false)
         }
-        fromPrinciples.map(async(chat,index)=>{
-            console.log(`user ${index} : ${chat}`)
+    //     fromPrinciples.map(async(chat,index)=>{
+    //         console.log(`user ${index} : ${chat}`)
             
-           let resp = await actors?.userActor?.getUserByPrincipal(Principal.fromText(chat.toString()))
+    //        let resp = await actors?.userActor?.getUserByPrincipal(Principal.fromText(chat.toString()))
 
-            console.log("resp : ",resp);
-            arr.push({...resp,id:chat})
-            console.log("arr : ",arr)
-            setChatUsers(arr)
-            setLoading(false)
+    //         console.log("resp : ",resp);
+    //         arr.push({...resp,id:chat})
+    //         console.log("arr : ",arr)
+    //         setChatUsers(arr)
+    //         setLoading(false)
             
-            // .then(async(res)=>{
-            //     console.log(res[0])
-            //     // console.log([...chatUsers,{...res[0],id:chat}])
-            //     console.log({...res[0],id:chat})
-            //     arr.push({...res[0],id:chat})
-            //     // console.log("final arr : ",arr)
-            //     // setChatUsers(c=>[...c,{...res[0],id:chat}])
-            //     setLoading(false)
-            //     setChatUsers(arr)
-            // }).catch((err)=>{
-            //     console.log("chatuser fetching err : ",err)
-            //     setLoading(false)
-            // })
-        })
+    //         // .then(async(res)=>{
+    //         //     console.log(res[0])
+    //         //     // console.log([...chatUsers,{...res[0],id:chat}])
+    //         //     console.log({...res[0],id:chat})
+    //         //     arr.push({...res[0],id:chat})
+    //         //     // console.log("final arr : ",arr)
+    //         //     // setChatUsers(c=>[...c,{...res[0],id:chat}])
+    //         //     setLoading(false)
+    //         //     setChatUsers(arr)
+    //         // }).catch((err)=>{
+    //         //     console.log("chatuser fetching err : ",err)
+    //         //     setLoading(false)
+    //         // })
+    //     })
         
-        // if(newChat!="" && !(fromPrinciples.includes(newChat))){
-        //     console.log(`new user : ${newChat}`)
-        //     console.log("Creating new chat")
-        //     await actors?.userActor?.getUserInfoByPrincipal(Principal.fromText(newChat))
-        //     .then((res)=>{
-        //         console.log(res[0])
-        //         setChatUsers([...chatUsers,{...res[0],id:newChat}])
-        //         setLoading(false)
-        //     }).catch((err)=>{
-        //         console.log("new chatuser fetching er : ",err)
-        //         setLoading(false)
-        //     })
-        // }
-        setLoading(false)
+    //     // if(newChat!="" && !(fromPrinciples.includes(newChat))){
+    //     //     console.log(`new user : ${newChat}`)
+    //     //     console.log("Creating new chat")
+    //     //     await actors?.userActor?.getUserInfoByPrincipal(Principal.fromText(newChat))
+    //     //     .then((res)=>{
+    //     //         console.log(res[0])
+    //     //         setChatUsers([...chatUsers,{...res[0],id:newChat}])
+    //     //         setLoading(false)
+    //     //     }).catch((err)=>{
+    //     //         console.log("new chatuser fetching er : ",err)
+    //     //         setLoading(false)
+    //     //     })
+    //     // }
+    //     setLoading(false)
+    // }
+    for(let idx = 0; idx < fromPrinciples.length; idx++) {
+        console.log(`User ${idx} : ${fromPrinciples[idx]}`);
+        try {
+          let resp = await actors?.userActor?.getUserByPrincipal(
+            Principal.fromText(fromPrinciples[idx].toString())
+          );
+          
+          console.log("Get chat User response : ", resp);
+  
+          arr.push({...resp.ok, id : fromPrinciples[idx]})
+          setChatUsers(arr)
+          setLoading(false)
+        } catch (err) {
+          console.log("Error in fetching : ", err)
+        }
+      };
     }
     useEffect(()=>{
         chatLogin()

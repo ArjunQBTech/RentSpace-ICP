@@ -137,7 +137,7 @@ const ChatContainer = ({navigation}) => {
         console.log("To Loop : ", chats[idx].toPrincipal);
         toPrinciples.push(chats[idx].toPrincipal);
       }
-    };;
+    };
     
     fromPrinciples = new Set(fromPrinciples);
     toPrinciples = new Set(toPrinciples);
