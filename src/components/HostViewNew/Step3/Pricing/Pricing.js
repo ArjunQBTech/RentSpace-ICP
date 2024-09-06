@@ -132,7 +132,7 @@ const Pricing = ({setHostModal, pos}) => {
       // );
       Dialog.show({
         type: ALERT_TYPE.WARNING,
-        title: 'No payment method selected',
+        title: 'No Payment Method Selected',
         textBody:
           'Add atleast one payment method through which you are willing to accept payments',
         button: 'OK',

@@ -278,7 +278,7 @@ const BookingFormComp = ({
         setLoading(false);
         Dialog.show({
           type: ALERT_TYPE.WARNING,
-          title: 'Some error occcured',
+          title: 'Some Error Occcured',
           textBody: bookingRes?.err,
           button: 'OK',
         });
@@ -326,8 +326,8 @@ const BookingFormComp = ({
       setLoading(false);
       Dialog.show({
         type: ALERT_TYPE.DANGER,
-        title: 'Some error occcured',
-        textBody: `Some error occured while booking the hotel `,
+        title: 'Some Error Occcured',
+        textBody: `Some Error Occured While Booking the Hotel `,
         button: 'OK',
       });
     }

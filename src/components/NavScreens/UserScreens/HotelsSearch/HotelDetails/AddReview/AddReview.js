@@ -47,7 +47,7 @@ const AddReview = ({item,setAddReview}) => {
       if(reviewRes?.err!=undefined){
         setLoading(false)
         Dialog.show({
-          title: 'Something went wrong',
+          title: 'Something Went Wrong',
           type: ALERT_TYPE.DANGER,
           textBody: reviewRes?.err,
         });
@@ -56,7 +56,7 @@ const AddReview = ({item,setAddReview}) => {
         Dialog.show({
           title: 'SUCCESS',
           type: ALERT_TYPE.SUCCESS,
-          textBody: 'Thanks for giving your valueable feedback',
+          textBody: 'Thanks for giving your valuable feedback',
         });
         setLoading(false)
         setAddReview(false)
@@ -68,7 +68,7 @@ const AddReview = ({item,setAddReview}) => {
       Dialog.show({
         title: 'Something went wrong',
         type: ALERT_TYPE.DANGER,
-        textBody: 'some err occured while adding your review',
+        textBody: 'Some Error Occured While Adding Your Review',
       });
     }
     

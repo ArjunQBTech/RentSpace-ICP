@@ -95,7 +95,7 @@ const BottomSheetFinishSignUp = ({openComm, closeModal}) => {
           Dialog.show({
             type: ALERT_TYPE.SUCCESS,
             title: 'Registration successful',
-            textBody: `Welcome ${fname}! You are successfully registered `,
+            textBody: `Welcome ${fname}! You are Successfully Registered `,
             button: 'OK',
           });
 
@@ -115,7 +115,7 @@ const BottomSheetFinishSignUp = ({openComm, closeModal}) => {
           Dialog.show({
             type: ALERT_TYPE.WARNING,
             // title:res?.err,
-            title: 'Trying to register failed',
+            title: 'Trying to Register Failed',
             textBody: res?.err,
             button: 'OK',
           });
@@ -150,7 +150,7 @@ const BottomSheetFinishSignUp = ({openComm, closeModal}) => {
               Dialog.show({
                 type: ALERT_TYPE.WARNING,
                 title: 'CANNOT SKIP',
-                textBody: 'Please Register first to continue further',
+                textBody: 'Please Register First to Continue Further',
                 button: 'OK',
               });
             }

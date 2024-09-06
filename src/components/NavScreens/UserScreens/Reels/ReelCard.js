@@ -112,7 +112,7 @@ const ReelCard = ({item, reelIndex}) => {
       Dialog.show({
         type: ALERT_TYPE.WARNING,
         title: 'Warning',
-        textBody: 'Please login to comment on this property',
+        textBody: 'Please Login to Comment on this Property',
         button: 'OK',
       });
       return;
@@ -363,7 +363,7 @@ const ReelCard = ({item, reelIndex}) => {
       Dialog.show({
         type: ALERT_TYPE.WARNING,
         title: 'Warning',
-        textBody: 'Please login to like this property',
+        textBody: 'Please Login to Like this Property',
         button: 'OK',
       });
       return;

@@ -79,7 +79,7 @@ const FirstForm = ({setBookingForm, item, setOpen}) => {
       Dialog.show({
         type: ALERT_TYPE.WARNING,
         title: 'WARNING',
-        textBody: 'You need to complete the payment first',
+        textBody: 'You Need to Complete the Payment First',
         button: 'OK',
       });
     }

@@ -24,7 +24,7 @@ const HotelCreationForm = ({setHotelCreateForm}) => {
     Dialog.show({
       type:ALERT_TYPE.SUCCESS,
       title:'SUCCESS',
-      textBody:'Your hotel has been created',
+      textBody:'Your Hotel has been Created',
       button:'OK',
     })
    

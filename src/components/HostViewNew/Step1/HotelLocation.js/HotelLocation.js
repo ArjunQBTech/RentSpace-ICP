@@ -34,7 +34,7 @@ const HotelLocation = ({setHostModal,pos}) => {
       Dialog.show({
         type:ALERT_TYPE.WARNING,
         title:'WARNING',
-        textBody:'Please select a location before moving forward!',
+        textBody:'Please Select a Location Before Moving Forward!',
         button:'OK',
       })
       

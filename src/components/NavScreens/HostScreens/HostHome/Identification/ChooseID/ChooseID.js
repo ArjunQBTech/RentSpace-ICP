@@ -146,7 +146,7 @@ const ChooseID = ({setIdprocess, pos}) => {
               type: ALERT_TYPE.DANGER,
               title: 'Error ',
               textBody:
-                'Something went wrong while uploading, please try again',
+                'Something went wrong while uploading, Please Try Again',
               button: 'OK',
             });
             setUpload(false);

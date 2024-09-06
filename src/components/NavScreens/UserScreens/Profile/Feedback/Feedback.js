@@ -22,7 +22,7 @@ const Feedback = ({setFeedbackPage}) => {
             Dialog.show({
               type:ALERT_TYPE.SUCCESS,
               title:'SUCCESS',
-              textBody:'Thanks for your valueble feedback!',
+              textBody:'Thanks for your valuable feedback!',
               button:'OK',
             })
             console.log(feedback)

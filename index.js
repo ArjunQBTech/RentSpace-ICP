@@ -225,7 +225,7 @@ const RootComponent: React.FC = () => {
             Dialog.show({
               type: ALERT_TYPE.INFO,
               title: 'INFO',
-              textBody: 'Now please follow the registeration process!',
+              textBody: 'Now please follow the registration process!',
               button: 'OK',
             });
             btmSheetLoginRef.current.dismiss();
@@ -563,7 +563,7 @@ const RootComponent: React.FC = () => {
               Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
                 title: 'CONTINUE',
-                textBody: 'Now please follow the registeration process!',
+                textBody: 'Now please follow the registration process!',
                 button: 'OK',
               });
               btmSheetLoginRef.current.dismiss();

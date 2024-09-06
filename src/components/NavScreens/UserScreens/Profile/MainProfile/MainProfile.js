@@ -145,7 +145,7 @@ const MainProfile = ({navigation}) => {
         Dialog.show({
           type: ALERT_TYPE.SUCCESS,
           title: 'SUCCESS',
-          textBody: 'You are a host now!',
+          textBody: 'You are a Host Now!',
           button: 'OK',
         });
         await actors.userActor

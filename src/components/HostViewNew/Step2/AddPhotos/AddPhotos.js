@@ -26,7 +26,7 @@ const AddPhotos = ({setHostModal, pos}) => {
       Dialog.show({
         type:ALERT_TYPE.WARNING,
         title:'No image selected',
-        textBody:'Please add atleast one image',
+        textBody:'Please add Atleast one Image',
         button:'OK',
       })
       
@@ -36,7 +36,7 @@ const AddPhotos = ({setHostModal, pos}) => {
       // Alert.alert('No video selected', 'Please add a Video');
       Dialog.show({
         type:ALERT_TYPE.WARNING,
-        title:'No video selected',
+        title:'No Video Selected',
         textBody:'Please add a Video',
         button:'OK',
       })

@@ -40,7 +40,7 @@ const Room = ({setHostModal, pos}) => {
       Dialog.show({
         type:ALERT_TYPE.WARNING,
         title:'Warning',
-        textBody:'Please create a room to proceed',
+        textBody:'Please Create a Room to Proceed',
         button:'OK',
       })
       return false;

@@ -47,7 +47,7 @@ const GetWalletId = ({
             Dialog.show({
               type:ALERT_TYPE.SUCCESS,
               title:'Verified',
-              textBody:"We have verified your phantom account ID",
+              textBody:"We have Verified your Phantom Account ID",
               button:'OK',
             })
             

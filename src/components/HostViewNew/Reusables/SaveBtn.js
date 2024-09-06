@@ -16,7 +16,7 @@ const SaveBtn = ({setHostModal}) => {
           Dialog.show({
             type:ALERT_TYPE.WARNING,
             title:'WARNING',
-            textBody:'Please complete your listing first!',
+            textBody:'Please Complete Your Listing First!',
             button:'OK',
           })
           

@@ -79,8 +79,8 @@ const Amenities = ({setHostModal, pos}) => {
       // Alert.alert('No aminities slected!', 'Select atleast one aminity');
       Dialog.show({
         type: ALERT_TYPE.WARNING,
-        title: 'No aminities selected!',
-        textBody: 'Select atleast one aminity',
+        title: 'No Amenities selected!',
+        textBody: 'Select atleast one Amenity',
         button: 'OK',
       });
 
