@@ -62,9 +62,9 @@ export const AlertThemes=[
     label:COLORS.black,
     card:'#fff',
     overlay:'#E0E0E0',
-    success:'#4CC900',
-    danger:'#FF0000',
-    warning:'#FFD683',
+    success:'#000',
+    danger:'#000',
+    warning:'#000',
   }
 ]
 
