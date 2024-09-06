@@ -25,7 +25,7 @@ import UserDetailDemo from './src/components/NavScreens/UserScreens/Profile/Moda
 // import Map from './src/components/NavScreens/UserScreens/Map/Map';
 import Reels from './src/components/NavScreens/UserScreens/Reels/Reels';
 import {User} from './src/declarations/User';
-import {Hotel} from './src/declarations/Hotel'
+import {Hotel} from './src/declarations/Hotel';
 import {backend} from './src/declarations/backend';
 import PolyfillCrypto from 'react-native-webview-crypto';
 import {
@@ -67,8 +67,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {host, ids, nodeBackend} from './DevelopmentConfig';
 import MainProfile from './src/components/NavScreens/UserScreens/Profile/MainProfile/MainProfile';
 import HotelChoice from './src/components/NavScreens/HostScreens/Availibility/HotelChoice/HotelChoice';
-import {AlertNotificationRoot, ALERT_TYPE,Dialog} from 'react-native-alert-notification'
-import { AlertThemes } from './src/constants/themes';
+import {
+  AlertNotificationRoot,
+  ALERT_TYPE,
+  Dialog,
+} from 'react-native-alert-notification';
+import {AlertThemes} from './src/constants/themes';
 
 const Stack = createNativeStackNavigator();
 
@@ -100,8 +104,6 @@ PushNotification.configure({
 });
 
 const RootComponent: React.FC = () => {
- 
-
   const btmSheetLoginRef = useRef(null);
   const btmSheetFinishRef = useRef(null);
   const [middleKeyIdentity, setMiddleKeyIdentity] = useState('');
@@ -213,19 +215,19 @@ const RootComponent: React.FC = () => {
             btmSheetLoginRef.current.dismiss();
             // Alert.alert(`welcome`,`You are welcome again ${res[0]?.firstName}!`);
             Dialog.show({
-              type:ALERT_TYPE.SUCCESS,
-              title:'WELCOME',
-              textBody:`You are welcome again ${res[0]?.firstName}!`,
-              button:'OK',
-            })
+              type: ALERT_TYPE.SUCCESS,
+              title: 'WELCOME',
+              textBody: `You are welcome again ${res[0]?.firstName}!`,
+              button: 'OK',
+            });
           } else {
             // Alert.alert('Now please follow the registeration process!');
             Dialog.show({
-              type:ALERT_TYPE.INFO,
-              title:'INFO',
-              textBody:'Now please follow the registeration process!',
-              button:'OK',
-            })
+              type: ALERT_TYPE.INFO,
+              title: 'INFO',
+              textBody: 'Now please follow the registeration process!',
+              button: 'OK',
+            });
             btmSheetLoginRef.current.dismiss();
             btmSheetFinishRef.current.present();
           }
@@ -278,7 +280,7 @@ const RootComponent: React.FC = () => {
 
   let resp;
 
-  const handleLogin = async (setLoader) => {
+  const handleLogin = async setLoader => {
     const newDel = await getFromAsyncStore('delegation');
     const newPri = await getFromAsyncStore('prikey');
     const newpub = await getFromAsyncStore('pubkey');
@@ -292,65 +294,69 @@ const RootComponent: React.FC = () => {
         // console.log("ids : ",ids)
         try {
           Linking.addEventListener('url', handleDeepLink);
-          setTimeout(async () => {
-            // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
-            // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
-            // const url = `http://127.0.0.1:4943/?canisterId=bw4dl-smaaa-aaaaa-qaacq-cai&publicKey=${toHex( // for atharva local
-            const url = `http://127.0.0.1:4943/?canisterId=cbopz-duaaa-aaaaa-qaaka-cai&publicKey=${toHex(res.getPublicKey().toDer(), 
+          // setTimeout(async () => {
+          // const url = `https://xmzaw-5iaaa-aaaao-a3oda-cai.icp0.io?publicKey=${toHex(res.getPublicKey().toDer())}`;
+          // const url = `http://127.0.0.1:4943/?canisterId=bw4dl-smaaa-aaaaa-qaacq-cai&publicKey=${toHex( // for atharva local
+          const url = `http://127.0.0.1:4943/?canisterId=cbopz-duaaa-aaaaa-qaaka-cai&publicKey=${toHex(res.getPublicKey().toDer(), 
             // const url = `http://127.0.0.1:4943/?canisterId=br5f7-7uaaa-aaaaa-qaaca-cai&publicKey=${toHex( // for rajnish local 
             //   res.getPublicKey().toDer(),
             )}`;
-            if (await InAppBrowser.isAvailable()) {
-              const result = await InAppBrowser.open(url, {
-                // iOS Properties
-                dismissButtonStyle: 'cancel',
-                preferredBarTintColor: '#453AA4',
-                preferredControlTintColor: 'white',
-                readerMode: false,
-                animated: true,
-                modalPresentationStyle: 'fullScreen',
-                modalTransitionStyle: 'coverVertical',
-                modalEnabled: true,
-                enableBarCollapsing: false,
-                // Android Properties
-                showTitle: true,
-                // toolbarColor: '#6200EE',
-                toolbarColor: 'black',
-                secondaryToolbarColor: 'black',
-                navigationBarColor: 'black',
-                navigationBarDividerColor: 'white',
-                enableUrlBarHiding: true,
-                enableDefaultShare: true,
-                forceCloseOnRedirection: false,
-                animations: {
-                  startEnter: 'slide_in_right',
-                  startExit: 'slide_out_left',
-                  endEnter: 'slide_in_left',
-                  endExit: 'slide_out_right',
-                },
-                headers: {
-                  'my-custom-header': 'my custom header value',
-                },
-              });
+          if (await InAppBrowser.isAvailable()) {
+            const result = await InAppBrowser.open(url, {
+              // iOS Properties
+              dismissButtonStyle: 'cancel',
+              preferredBarTintColor: '#453AA4',
+              preferredControlTintColor: 'white',
+              readerMode: false,
+              animated: true,
+              modalPresentationStyle: 'fullScreen',
+              modalTransitionStyle: 'coverVertical',
+              modalEnabled: true,
+              enableBarCollapsing: false,
+              // Android Properties
+              showTitle: true,
+              // toolbarColor: '#6200EE',
+              toolbarColor: 'black',
+              secondaryToolbarColor: 'black',
+              navigationBarColor: 'black',
+              navigationBarDividerColor: 'white',
+              enableUrlBarHiding: true,
+              enableDefaultShare: true,
+              forceCloseOnRedirection: false,
+              animations: {
+                startEnter: 'slide_in_right',
+                startExit: 'slide_out_left',
+                endEnter: 'slide_in_left',
+                endExit: 'slide_out_right',
+              },
+              headers: {
+                'my-custom-header': 'my custom header value',
+              },
+            });
 
-              // AppState.addEventListener('change',handleDeepLink)
-              // await this.sleep(800);
-              // console.log(await Linking.getInitialURL())
-            } else {
-              Linking.openURL(url);
-              // alert('opening external link');
+            // AppState.addEventListener('change',handleDeepLink)
+            // await this.sleep(800);
+            // console.log(await Linking.getInitialURL())
+
+            if (result.type === 'cancel') {
+              console.log('User manually closed the browser.');
+              setLoader(false); // Stop loader only if closed manually else it will be stopped in handleDeepLink function
             }
-          }, 1000);
+          } else {
+            Linking.openURL(url);
+            // alert('opening external link');
+          }
+          // }, 1000);
         } catch (error) {
-          console.log("error in 344 : ",error);
-          setLoader(false)
+          console.log(error);
+          setLoader(false);
           // alert(error);
         }
       })
       .catch(err => {
         console.log("Err in 350 : ",err);
         // alert(err);
-        setLoader(false)
+        setLoader(false);
       });
   };
   const handleDeepLink = async event => {
@@ -494,19 +500,16 @@ const RootComponent: React.FC = () => {
         blsVerify: () => true,
         canisterId: ids.ICPtokenCan,
       });
-      console.log("Actor ICP created", actorICPToken)
-      let actorCkBTCToken=Actor.createActor(idlFactory, {
+      let actorCkBTCToken = Actor.createActor(idlFactory, {
         agent,
-        blsVerify:()=>true,
-        canisterId:ids.ckBTCtokenCan
-      })
-      console.log("Actor cKBTC created", actorCkBTCToken)
-      let actorCkETHToken=Actor.createActor(idlFactory, {
+        blsVerify: () => true,
+        canisterId: ids.ckBTCtokenCan,
+      });
+      let actorCkETHToken = Actor.createActor(idlFactory, {
         agent,
-        blsVerify:()=>true,
-        canisterId:ids.ckETHtokenCan
-      })
-      console.log("Actor cKETH created", actorCkETHToken)
+        blsVerify: () => true,
+        canisterId: ids.ckETHtokenCan,
+      });
       let actorReview = createReviewActor(ids.reviewCan, {agent});
       console.log("Actor Review created", actorReview)
       let actorComment = createCommentActor(ids.commentCan, {agent});
@@ -550,19 +553,19 @@ const RootComponent: React.FC = () => {
               btmSheetLoginRef.current.dismiss();
               // Alert.alert(`Welcome`,`You are welcome again ${res[0]?.firstName}!`);
               Dialog.show({
-                type:ALERT_TYPE.SUCCESS,
-                title:'WELCOME',
-                textBody:`You are welcome again ${res?.ok?.firstName}!`,
-                button:'OK',
-              })
+                type: ALERT_TYPE.SUCCESS,
+                title: 'WELCOME',
+                textBody: `You are welcome again ${res?.ok?.firstName}!`,
+                button: 'OK',
+              });
             } else {
               // Alert.alert("Continue",'Now please follow the registeration process!');
               Dialog.show({
-                type:ALERT_TYPE.SUCCESS,
-                title:'CONTINUE',
-                textBody:'Now please follow the registeration process!',
-                button:'OK',
-              })
+                type: ALERT_TYPE.SUCCESS,
+                title: 'CONTINUE',
+                textBody: 'Now please follow the registeration process!',
+                button: 'OK',
+              });
               btmSheetLoginRef.current.dismiss();
               btmSheetFinishRef.current.present();
             }
@@ -581,13 +584,13 @@ const RootComponent: React.FC = () => {
     } catch (err) {
       console.log("Err in 571 : ", err)
       //alert(err)
-      setLoader(false)
+      setLoader(false);
       Dialog.show({
-        type:ALERT_TYPE.DANGER,
-        title:'WARNING',
-        textBody:err,
-        button:'OK',
-      })
+        type: ALERT_TYPE.DANGER,
+        title: 'WARNING',
+        textBody: err,
+        button: 'OK',
+      });
     }
   };
 
@@ -595,76 +598,73 @@ const RootComponent: React.FC = () => {
     <>
       <PolyfillCrypto />
       <Provider store={Store}>
-        <AlertNotificationRoot colors={AlertThemes} theme='light'>
-        <NavigationContainer linking={linking}>
-          <Stack.Navigator initialRouteName="reels">
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="Launch"
-              component={Main}
-              initialParams={{
-                handleLogin,
-                btmSheetLoginRef,
-                btmSheetFinishRef,
-                delegationValidation,
-              }}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="UserChat"
-              component={ChatContainer}
-              initialParams={{newChat: ''}}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="profile"
-              component={MainProfile}
-            />
-            {/* <Stack.Screen
+        <AlertNotificationRoot colors={AlertThemes} theme="light">
+          <NavigationContainer linking={linking}>
+            <Stack.Navigator initialRouteName="reels">
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Launch"
+                component={Main}
+                initialParams={{
+                  handleLogin,
+                  btmSheetLoginRef,
+                  btmSheetFinishRef,
+                  delegationValidation,
+                }}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="UserChat"
+                component={ChatContainer}
+                initialParams={{newChat: ''}}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="profile"
+                component={MainProfile}
+              />
+              {/* <Stack.Screen
               options={{headerShown: false}}
               name="mapSearch"
               component={Map}
             /> */}
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="reels"
-              component={Reels}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="hostHome"
-              component={HostHome}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="hostMenu"
-              component={MenuPage}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="hostListing"
-              component={Listings}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="hostChat"
-              component={AllChats}
-            />
-            <Stack.Screen
-              options={{headerShown: false}}
-              name="hotelAvailable"
-              component={HotelChoice}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="reels"
+                component={Reels}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="hostHome"
+                component={HostHome}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="hostMenu"
+                component={MenuPage}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="hostListing"
+                component={Listings}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="hostChat"
+                component={AllChats}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="hotelAvailable"
+                component={HotelChoice}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
         </AlertNotificationRoot>
       </Provider>
     </>
   );
 };
-
-
-
 
 AppRegistry.registerComponent(appName, () => RootComponent);
 // AppRegistry.registerComponent(appName, () => App);

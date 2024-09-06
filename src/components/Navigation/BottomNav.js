@@ -23,7 +23,8 @@ const BottomNav = ({navigation}) => {
 
   const {user} = useSelector(state => state.userReducer);
 
-  // console.log('user', user?.userImage);
+  console.log('user : ', user?.userImage);
+
 
   const [bottom, setBottom] = useState(0);
   useEffect(() => {
@@ -117,10 +118,10 @@ const BottomNav = ({navigation}) => {
             navigation.navigate('profile');
           }}>
           {/* user profile photo */}
-          {user?.userImage ? (
-            <Image source={{uri: user?.userImage}} style={styles.profilePic} />
-          ) : (
+          {user?.userImage == '' || user?.userImage == 'img' ? (
             <Icon name="user" size={25} color={COLORS.black} />
+          ) : (
+            <Image source={{uri: user?.userImage}} style={styles.profilePic} />
           )}
         </TouchableOpacity>
       </View>

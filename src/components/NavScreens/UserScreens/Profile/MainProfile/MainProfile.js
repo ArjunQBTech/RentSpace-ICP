@@ -38,6 +38,7 @@ import Terms from '../TermAndConditions/Terms';
 import Faq from '../Faq/Faq';
 import {Dialog, ALERT_TYPE} from 'react-native-alert-notification';
 import Loading from '../../Loading';
+import { CommonActions } from '@react-navigation/native';
 
 const MainProfile = ({navigation}) => {
   const {user} = useSelector(state => state.userReducer);
@@ -54,16 +55,18 @@ const MainProfile = ({navigation}) => {
   const [termsPage, setTermsPage] = useState(false);
 
   const logout = () => {
-    // dispatch(setActor({
-    //     backendActor:backend,
-    //     userActor:User,
-    //     hotelActor:Hotel
-    // }))
-    // dispatch(setUser({}))
-    // dispatch(setHotels([]))
-    // dispatch(setPrinciple(''))
-    // navigation.navigate('Launch')
-    NativeModules.DevSettings.reload();
+    dispatch(setActor({
+        backendActor:backend,
+        userActor:User,
+        hotelActor:Hotel
+    }))
+    dispatch(setUser({}))
+    dispatch(setHotels([]))
+    dispatch(setPrinciple(''))
+    navigation.navigate('reels')
+
+    // NativeModules.DevSettings.reload();
+
   };
 
   const getHotelList = async () => {
@@ -110,7 +113,7 @@ const MainProfile = ({navigation}) => {
       dob: user?.dob,
       userEmail: user?.userEmail,
       userRole: 'Host',
-      userImage: user?.userImage != '' ? user?.userImage : 'img',
+      userImage: user?.userImage != '' ? user?.userImage : '',
       userGovID:
         user?.userGovID == '' || user?.userGovID == null ? '' : user?.userGovID,
       govIDLink:
@@ -405,8 +408,8 @@ const MainProfile = ({navigation}) => {
         <Line />
         <ProfileSection heading={'Legal'} list={legalList} />
         <View style={styles.linkView}>
-          <TouchableOpacity onPress={logout}>
-            <Text style={styles.linkText}>Logout</Text>
+          <TouchableOpacity style={styles.logoutBtn} onPress={logout}>
+            <Text style={styles.linkText}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -537,13 +540,21 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.mainGrey,
     zIndex: 10,
   },
+  logoutBtn:{
+    width:'100%',
+    backgroundColor:'black',
+    paddingVertical: 15,
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:10
+  },
   linkText: {
-    color: COLORS.textLightGrey,
+    color: COLORS.white,
     textAlign: 'center',
-    opacity: 0.8,
-    fontWeight: 'bold',
-    marginTop: 10,
-    textDecorationLine: 'underline',
+    // opacity: 0.8,
+    fontWeight: '700',
+    // marginTop: 10,
   },
   linkView: {
     display: 'flex',
@@ -551,6 +562,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '88%',
     paddingTop: 20,
-    paddingBottom: 40,
+    paddingBottom: 30,
   },
+  
 });

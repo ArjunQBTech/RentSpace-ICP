@@ -8,7 +8,7 @@ const comparisons=[
   {
     type:'detailed',
     heading:'Guest identity verification',
-    text:'Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on Rentspace.',
+    text:'Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on RentSpace.',
     rent:true,
     comp:true
   },
@@ -22,7 +22,7 @@ const comparisons=[
   {
     type:'detailed',
     heading:'$3m damage protection',
-    text:'Rentspace reimburses you for damage caused by guests to your home and belongings and includes these specialised protections:',
+    text:'RentSpace reimburses you for damage caused by guests to your home and belongings and includes these specialised protections:',
     rent:true,
     comp:false
   },
@@ -81,9 +81,9 @@ const ComparisonFeatures = () => {
   return (
     <View style={styles.cont}>
       <Text style={styles.subTitle}><Text style={styles.title}>Rent Cover </Text> for Hosts</Text>
-      <Text style={styles.subTitle2}>Rent space it with 360 protection</Text>
+      <Text style={styles.subTitle2}>RentSpace it with 360 protection</Text>
       <View style={styles.headingCont}>
-        <Text style={styles.heading}>Rentspace</Text>
+        <Text style={styles.heading}>RentSpace</Text>
         <Text style={[styles.heading,{marginLeft:'5%'}]}>Competitors</Text>
       </View>
       <View style={styles.hrLine}/>

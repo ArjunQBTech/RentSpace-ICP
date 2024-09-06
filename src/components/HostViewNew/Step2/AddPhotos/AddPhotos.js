@@ -103,7 +103,7 @@ const AddPhotos = ({setHostModal, pos}) => {
       <Text style={styles.text}>
         Our comprehensive verification system checks details such as name,
         address, government ID and more to confirm the identity of guests who
-        book on Rentspace.
+        book on RentSpace.
       </Text>
       <PhotoBtn
         text={'Add photos'}

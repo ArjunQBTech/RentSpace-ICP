@@ -26,7 +26,7 @@ const Step1 = ({setHostModal,pos}) => {
       <Text style={styles.subTitle}>Step 1</Text>
       <Text style={styles.title}>Concisely highlight the key features and location of your property.</Text>
       <Text style={styles.text}>
-      Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on Rentspace.
+      Our comprehensive verification system checks details such as name, address, government ID and more to confirm the identity of guests who book on RentSpace.
       </Text>
     </View>
   )

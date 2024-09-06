@@ -9,7 +9,7 @@ const RentSpaceCard = () => {
       <Image style={styles.img} source={images.logo}/>
       <View style={styles.textCont}>
         <Text style={styles.title}>
-            Rent space your place
+            RentSpace your place
         </Text>
         <Text style={styles.text}>
             It’s simple to get set up and start earning.

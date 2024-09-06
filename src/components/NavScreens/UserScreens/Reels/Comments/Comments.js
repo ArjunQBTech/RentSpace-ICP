@@ -127,9 +127,9 @@ const Comments = ({id, comments, getComments, loading, setLoading}) => {
       <View style={styles.typeCont}>
         <Image
           source={
-            user?.userProfile == '' || user?.userProfile == 'img'
+            user?.userImage == '' || user?.userImage == 'img'
               ? images.sampleProfile2
-              : {uri: user?.userProfile}
+              : {uri: user?.userImage}
           }
           style={styles.img}
         />
