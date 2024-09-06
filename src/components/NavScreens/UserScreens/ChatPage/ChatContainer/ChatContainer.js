@@ -111,20 +111,34 @@ const ChatContainer = ({navigation}) => {
     let fromPrinciples = [];
     let toPrinciples = [];
     // chnage to for loop ----------------------------------------
-    chats.map(chat => {
-      fromPrinciples.push(chat.fromPrincipal);
-      console.log('from map : ', {
-        id: chat.fromPrincipal,
-        updateAt: chat.updatedAt,
-      });
-    });
+    // chats.map(chat => {
+    //   fromPrinciples.push(chat.fromPrincipal);
+    //   console.log('from map : ', {
+    //     id: chat.fromPrincipal,
+    //     updateAt: chat.updatedAt,
+    //   });
+    // });
+    for(let idx = 0; idx < chats.length; idx++) {
+      fromPrinciples.push(chats[idx].fromPrincipal);
+      console.log('From Loop : ', {
+        id : chats[idx].fromPrincipal,
+        updatedAt : chats[idx].updatedAt
+      })
+    };
     // chnage to for loop ----------------------------------------
-    chats.map(chat => {
-      if (!fromPrinciples.includes(chat.toPrincipal)) {
-        console.log('to map : ', chat.toPrincipal);
-        toPrinciples.push(chat.toPrincipal);
+    // chats.map(chat => {
+    //   if (!fromPrinciples.includes(chat.toPrincipal)) {
+    //     console.log('to map : ', chat.toPrincipal);
+    //     toPrinciples.push(chat.toPrincipal);
+    //   }
+    // });
+    for(let idx = 0; idx < chats.length; idx++) {
+      if(!fromPrinciples.includes(chats[idx].toPrincipal)) {
+        console.log("To Loop : ", chats[idx].toPrincipal);
+        toPrinciples.push(chats[idx].toPrincipal);
       }
-    });
+    };;
+    
     fromPrinciples = new Set(fromPrinciples);
     toPrinciples = new Set(toPrinciples);
     fromPrinciples = Array.from(fromPrinciples);
@@ -137,26 +151,43 @@ const ChatContainer = ({navigation}) => {
       setLoading(false);
     }
     // chnage to for loop ----------------------------------------
-    fromPrinciples.map(async (chat, index) => {
-      console.log(`user ${index} : ${chat}`);
+    // fromPrinciples.map(async (chat, index) => {
+    //   console.log(`user ${index} : ${chat}`);
 
-      try {
-        let resp = await actors?.userActor?.getUserByPrincipal(
-          Principal.fromText(chat.toString()),
-        );
+    //   try {
+    //     let resp = await actors?.userActor?.getUserByPrincipal(
+    //       Principal.fromText(chat.toString()),
+    //     );
 
-        console.log('get chat user resp : ', resp);
+    //     console.log('get chat user resp : ', resp);
 
-        arr.push({...resp.ok, id: chat});
-        setChatUsers(arr);
-        setLoading(false);
-        setChatUsers(arr);
-      } catch (err) {
-        console.log('error in fetching user : ', err);
-      }
+    //     arr.push({...resp.ok, id: chat});
+    //     setChatUsers(arr);
+    //     setLoading(false);
+    //     setChatUsers(arr);
+    //   } catch (err) {
+    //     console.log('error in fetching user : ', err);
+    //   }
 
       
-    });
+    // });
+    for(let idx = 0; idx < fromPrinciples.length; idx++) {
+      console.log(`User ${idx} : ${fromPrinciples[idx]}`);
+      try {
+        let resp = await actors?.userActor?.getUserByPrincipal(
+          Principal.fromText(fromPrinciples[idx].toString())
+        );
+        
+        console.log("Get chat User response : ", resp);
+
+        arr.push({...resp.ok, id : fromPrinciples[idx]})
+        setChatUsers(arr)
+        setLoading(false)
+      } catch (err) {
+        console.log("Error in fetching : ", err)
+      }
+    };
+
     if (newChat != '' && !fromPrinciples.includes(newChat)) {
       //---------------------------------------
       console.log(`new user : ${newChat}`);
